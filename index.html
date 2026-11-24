@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Threads Daily Selfie Prompt Generator v2</title>
+<title>Threads Daily Selfie Generator v3</title>
 <style>
   :root {
     --bg: #f7f6f4;
@@ -14,6 +14,8 @@
     --accent-dark: #9c6453;
     --border: #e5e0db;
     --tag-bg: #f0ebe6;
+    --ss: #5c9ead;
+    --aw: #b87d6b;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -24,10 +26,11 @@
     padding: 16px;
     max-width: 680px;
     margin: 0 auto;
+    padding-bottom: 48px;
   }
   header {
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   header h1 {
     font-size: 1.15rem;
@@ -35,8 +38,35 @@
     letter-spacing: 0.03em;
   }
   header p {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--sub);
+  }
+  .season-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .season-btn {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: #fff;
+    color: var(--sub);
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .season-btn.active-ss {
+    border-color: var(--ss);
+    background: #eef7f9;
+    color: #2f6c7a;
+  }
+  .season-btn.active-aw {
+    border-color: var(--aw);
+    background: #faf2ef;
+    color: #8a5140;
   }
   .card {
     background: var(--card);
@@ -60,6 +90,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
+  .preset-btns .span-2 {
+    grid-column: span 2;
+  }
   button {
     border: none;
     border-radius: 8px;
@@ -79,10 +112,14 @@
     color: var(--text);
   }
   .btn-sub:active { background: #e2dad2; }
+  .btn-dark {
+    background: #3d3835;
+    color: #fff;
+  }
   .btn-full {
     width: 100%;
     padding: 12px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
   .grid-2 {
     display: grid;
@@ -120,6 +157,38 @@
     padding: 2px 8px;
     border-radius: 99px;
   }
+  .tone-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .tone-btn {
+    padding: 6px 4px;
+    font-size: 0.72rem;
+    background: var(--tag-bg);
+    color: var(--sub);
+    border: 1px solid transparent;
+  }
+  .tone-btn.active {
+    background: #fdf2ee;
+    color: var(--accent-dark);
+    border-color: var(--accent);
+  }
+  .caption-box {
+    background: #fdf8f6;
+    border-left: 3px solid var(--accent);
+    padding: 10px;
+    font-size: 0.83rem;
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+  }
+  .caption-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
   details summary {
     font-size: 0.8rem;
     font-weight: 600;
@@ -131,17 +200,10 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 10px;
-    font-size: 0.78rem;
+    font-size: 0.77rem;
     white-space: pre-wrap;
-    max-height: 280px;
+    max-height: 260px;
     overflow-y: auto;
-    margin-bottom: 10px;
-  }
-  .caption-box {
-    background: #fdf8f6;
-    border-left: 3px solid var(--accent);
-    padding: 8px 10px;
-    font-size: 0.8rem;
     margin-bottom: 10px;
   }
   .history-list {
@@ -154,6 +216,7 @@
     border-bottom: 1px dashed var(--border);
     display: flex;
     justify-content: space-between;
+    gap: 8px;
   }
   .toast {
     position: fixed;
@@ -162,12 +225,13 @@
     transform: translateX(-50%);
     background: #2c2a29;
     color: #fff;
-    padding: 8px 18px;
+    padding: 9px 18px;
     border-radius: 99px;
     font-size: 0.8rem;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s;
+    z-index: 999;
   }
   .toast.show { opacity: 1; }
 </style>
@@ -175,14 +239,20 @@
 <body>
 
 <header>
-  <h1>日常スナップ 2枚構成ジェネレーター</h1>
-  <p>顔完全固定・清楚／きれいめ／ほんのり色気対応（9:8左右分割）</p>
+  <h1>日常スナップ 2枚構成ジェネレーター v3</h1>
+  <p>顔完全固定・季節切替・SNSあるある＆Threads投稿文対応</p>
 </header>
+
+<!-- 季節切り替え -->
+<div class="season-bar">
+  <button id="btnSS" class="season-btn" onclick="setSeason('ss')">🌸☀️ 春夏モード</button>
+  <button id="btnAW" class="season-btn active-aw" onclick="setSeason('aw')">🍁❄️ 秋冬モード</button>
+</div>
 
 <!-- おまかせガチャ -->
 <div class="card">
   <div class="section-title">
-    <span>1日のストーリー自動生成</span>
+    <span>1日のストーリー自動生成（直近被り回避）</span>
     <span class="badge" id="recentBadge">履歴: 0件</span>
   </div>
   <div class="preset-btns">
@@ -190,6 +260,7 @@
     <button class="btn-primary" onclick="generateStory('work_break')">☕ 平日：昼カフェ×退勤</button>
     <button class="btn-sub" onclick="generateStory('holiday_out')">🛍️ 休日：きれいめ外出</button>
     <button class="btn-sub" onclick="generateStory('holiday_home')">🛏️ 休日：おうち色気</button>
+    <button class="btn-dark span-2" onclick="generateStory('sns_aruaru')">✨ SNS自撮り「あるある」特化ガチャ</button>
   </div>
 </div>
 
@@ -205,8 +276,8 @@
       <select id="time1" onchange="updatePreview()"></select>
     </div>
     <div>
-      <label>場所（自宅・外出）</label>
-      <select id="place1" onchange="updatePreview()"></select>
+      <label>場所（自宅・外出・あるある）</label>
+      <select id="place1" onchange="onPlaceChange(1)"></select>
     </div>
   </div>
   <div class="grid-2">
@@ -230,7 +301,7 @@
     </div>
   </div>
   <div class="field-row">
-    <label>服装プリセット（選ぶと下の欄に反映）</label>
+    <label>服装プリセット（季節連動）</label>
     <select id="clothPreset1" onchange="applyClothPreset(1)"></select>
   </div>
   <div class="field-row">
@@ -238,7 +309,7 @@
     <input type="text" id="cloth1" oninput="updatePreview()">
   </div>
   <div>
-    <label>表情・仕草</label>
+    <label>表情・仕草（あるある動作など）</label>
     <input type="text" id="pose1" oninput="updatePreview()">
   </div>
 </div>
@@ -255,8 +326,8 @@
       <select id="time2" onchange="updatePreview()"></select>
     </div>
     <div>
-      <label>場所（自宅・外出）</label>
-      <select id="place2" onchange="updatePreview()"></select>
+      <label>場所（自宅・外出・あるある）</label>
+      <select id="place2" onchange="onPlaceChange(2)"></select>
     </div>
   </div>
   <div class="grid-2">
@@ -280,7 +351,7 @@
     </div>
   </div>
   <div class="field-row">
-    <label>服装プリセット（選ぶと下の欄に反映）</label>
+    <label>服装プリセット（季節連動）</label>
     <select id="clothPreset2" onchange="applyClothPreset(2)"></select>
   </div>
   <div class="field-row">
@@ -288,8 +359,23 @@
     <input type="text" id="cloth2" oninput="updatePreview()">
   </div>
   <div>
-    <label>表情・仕草</label>
+    <label>表情・仕草（あるある動作など）</label>
     <input type="text" id="pose2" oninput="updatePreview()">
+  </div>
+</div>
+
+<!-- Threads投稿文エリア -->
+<div class="card">
+  <div class="section-title"><span>Threads投稿文ジェネレーター</span></div>
+  <div class="tone-tabs">
+    <button id="tone_balance" class="tone-btn active" onclick="setTone('balance')">⚖️ 男女バランス</button>
+    <button id="tone_male" class="tone-btn" onclick="setTone('male')">💘 男ウケ・距離近</button>
+    <button id="tone_reply" class="tone-btn" onclick="setTone('reply')">💬 共感・リプ誘発</button>
+  </div>
+  <div class="caption-box" id="captionOutput"></div>
+  <div class="caption-actions">
+    <button class="btn-sub" onclick="refreshCaption()">🔄 投稿文だけ変更</button>
+    <button class="btn-primary" onclick="copyCaption()">📋 投稿文をコピー</button>
   </div>
 </div>
 
@@ -304,18 +390,17 @@
   </details>
 </div>
 
-<!-- 出力結果 -->
+<!-- 画像生成プロンプト出力 -->
 <div class="card">
-  <div class="section-title"><span>生成プロンプト＆投稿文</span></div>
-  <div class="caption-box" id="captionOutput"></div>
+  <div class="section-title"><span>画像生成用プロンプト（自動整合チェック済）</span></div>
   <div class="output-box" id="promptOutput"></div>
-  <button class="btn-primary btn-full" onclick="copyAll()">📋 プロンプトをコピー（履歴に保存）</button>
+  <button class="btn-primary btn-full" onclick="copyPrompt()">📋 画像プロンプトをコピー（履歴に保存）</button>
 </div>
 
 <!-- 履歴 -->
 <div class="card">
   <div class="section-title">
-    <span>直近の使用履歴（ネタ被り防止）</span>
+    <span>直近の使用履歴（直近5件は自動回避）</span>
     <button class="btn-sub" style="padding:3px 8px;font-size:0.7rem;" onclick="clearHistory()">クリア</button>
   </div>
   <ul class="history-list" id="historyList"></ul>
@@ -324,13 +409,18 @@
 <div class="toast" id="toast">コピーしました！</div>
 
 <script>
-const STORAGE_KEY_BASE = "threads_base_prompt_v2";
-const STORAGE_KEY_HIST = "threads_history_v2";
+const STORAGE_KEY_BASE = "threads_base_prompt_v3";
+const STORAGE_KEY_HIST = "threads_history_v3";
+const STORAGE_KEY_SEASON = "threads_season_v3";
+
+let currentSeason = "aw";
+let currentMode = "work_gap";
+let currentTone = "balance";
 
 const DEFAULT_BASE_PROMPT = `生っぽく
-スマホは画角外
 手ブレ
 加工なし
+{{PHONE_RULE}}
 
 【被写体・顔の完全固定】
 被写体は26歳の成人日本人女性。参照画像の女性と完全に同一の顔立ち・輪郭・目鼻立ち・雰囲気を厳密に固定し、左右2枚の写真で顔が一切ブレないように描写する。
@@ -371,114 +461,166 @@ SNSに投稿された日常のスナップ写真のようなリアリティ。
 写真全体に「実際にこの女性がその日に撮った、または友人に撮ってもらった一枚」という生活感を持たせる。
 
 【撮影者・構図】
-一人でいるシーン：
-本人がスマートフォンで撮影したような自撮り写真。
-ただし、腕やスマートフォンを必ず画面内に入れる必要はない。
-画角外からスマートフォンを構えて撮影したように見える自然な自撮り風写真。
-不自然なカメラ目線やポーズを避ける。
+一人でいるシーン（通常自撮り）：
+本人がスマートフォンで撮影したような自撮り写真。腕やスマートフォンは画面内に入れず、画角外から構えて撮影した自然な構図。
+
+鏡越しシーンの指定がある場合のみ：
+洗面台や姿見の鏡越しに、本人が自然な手つきでスマートフォンを持って撮影しているリアルな構図。
 
 友人と一緒にいるシーン：
-友人がスマートフォンで撮影したような他人撮影の写真。
-被写体本人だけがカメラを強く意識しているようにはしない。
-友人との会話や笑顔など、自然な瞬間を切り取る。
-
-必要に応じて、写真の端に友人の肩や腕、テーブル、飲み物などを入れ、
-「誰かと一緒に過ごしている」ことが自然に伝わる構図にする。
+友人がスマートフォンで撮影したような他人撮影の写真。被写体本人だけがカメラを強く意識しているようにはせず、会話や笑顔の自然な瞬間を切り取る。必要に応じて写真の端に友人の肩やテーブル、飲み物を少し入れる。
 
 【SNSスナップとしての雰囲気】
-InstagramなどのSNSに実際に投稿されていそうな日常写真。
-「今日はこんなところに行った」「友達と遊んだ」という生活感が伝わる写真。
-
-写真映えを意識しすぎた完璧な構図ではなく、
-少しだけ構図が崩れていたり、髪が風で動いていたり、背景に一般の人がいたりするような、
-リアルなスマートフォン写真らしさを残す。
-
-ただし、背景の人物は主役にならず、自然にぼかされる。
+InstagramやThreadsに実際に投稿されていそうな日常写真。
+少しだけ構図が崩れていたり、髪が風で動いていたり、背景に一般の人が自然にぼけて映るようなリアルなスマホ写真らしさを残す。
 背景に個人情報、看板、住所、電話番号などを入れない。
-
 過剰なAI美化、過剰な肌補正、過剰な被写界深度、CG感、3DCG感、イラスト感を避ける。`;
 
 const DATA = {
   times: ["朝", "昼", "夕方", "夜"],
   places: [
-    { label: "自宅・玄関（ダークブラウンのドア・白い壁紙・白いシューズボックス）", short: "玄関", type: "home" },
-    { label: "自宅・リビング（グレーのソファ・暖色系間接照明・白い壁）", short: "リビング", type: "home" },
-    { label: "自宅・寝室（ダークブラウンのヘッドボード・暖色ベッドサイドランプ・白い寝具）", short: "寝室", type: "home" },
-    { label: "自宅・脱衣所（洗面台の鏡越し・白い収納棚とすりガラス扉）", short: "脱衣所", type: "home" },
-    { label: "自宅・姿見越し（白フレーム全身鏡・明るい木目床と白クローゼット）", short: "姿見越し", type: "home" },
-    { label: "外出・おしゃれなカフェの窓際席", short: "カフェ", type: "out" },
-    { label: "外出・通勤路の歩道（街並みは自然にボケる）", short: "通勤路", type: "out" },
-    { label: "外出・ピラティススタジオのロビーや更衣室", short: "ピラティス", type: "out" },
-    { label: "外出・百貨店のコスメフロアやラウンジ付近", short: "百貨店", type: "out" },
-    { label: "外出・落ち着いたビストロやイタリアンのテーブル席", short: "ディナー", type: "out" },
-    { label: "外出・美容院帰りの自然光が入る歩道", short: "美容院帰り", type: "out" }
+    { label: "自宅・玄関（ダークブラウンのドア・白い壁紙・白いシューズボックス）", short: "玄関", type: "home", mirror: false },
+    { label: "自宅・リビング（グレーのソファ・暖色系間接照明・白い壁）", short: "リビング", type: "home", mirror: false },
+    { label: "自宅・寝室（ダークブラウンのヘッドボード・暖色ベッドサイドランプ・白い寝具）", short: "寝室", type: "home", mirror: false },
+    { label: "自宅・脱衣所（洗面台の鏡越し・白い収納棚とすりガラス扉）", short: "脱衣所", type: "home", mirror: true },
+    { label: "自宅・姿見越し（白フレーム全身鏡・明るい木目床と白クローゼット）", short: "姿見越し", type: "home", mirror: true },
+    { label: "外出・おしゃれなカフェの窓際席（自然光・カップあり）", short: "カフェ窓際", type: "out", mirror: false },
+    { label: "外出・通勤路の歩道（街並みは自然にボケる）", short: "通勤路", type: "out", mirror: false },
+    { label: "外出・マンションのエレベーター内（鏡越し・落ち着いた照明）", short: "エレベーター", type: "out", mirror: true },
+    { label: "外出・美容院帰りの自然光が入る歩道（髪ツヤ重視）", short: "美容院帰り", type: "out", mirror: false },
+    { label: "外出・ピラティススタジオのロビー・更衣室（鏡越し可）", short: "ピラティス", type: "out", mirror: true },
+    { label: "外出・百貨店のコスメフロアやラウンジ付近", short: "百貨店", type: "out", mirror: false },
+    { label: "外出・落ち着いたビストロやイタリアンのテーブル席", short: "ディナー", type: "out", mirror: false }
   ],
   hairs: [
     "シースルーバングのストレートセミロング（顔に沿う自然なサイドバング）",
     "顔周りの後れ毛を残したゆるいまとめ髪（リラックスしたお団子・クリップ留め）",
     "清楚で上品なハーフアップ（毛先は自然な内巻き）",
     "低めのゆるいポニーテール（うなじと後れ毛が自然に見える仕事モード）",
-    "毛先だけ軽く巻いたフェミニンなゆる巻きダウンスタイル",
-    "お風呂上がりの少し湿り気のある下ろし髪（前髪軽め・ナチュラル）"
+    "美容院帰りのようなツヤのあるゆる巻きダウンスタイル",
+    "お風呂前・帰宅直後の無造作なゆるクリップまとめ髪（メイク落とす前感）"
   ],
   styles: ["自撮り（スマホ画角外）", "鏡越し自撮り（スマホ持ち）", "友人撮影風（他撮り）"],
   angles: ["顔ドアップ", "顔アップ", "バストアップ", "ウエストアップ", "全身（鏡越し）"],
   bgs: ["極力背景は映さない", "部屋の雰囲気が少しわかる程度", "生活感や背景を自然に映す"],
   outfits: {
-    seiso: [
-      "白のファー付きブランドダウンにブラウンのリブニット、黒ミニスカート、黒タイツ、黒レザーのブランドショルダーバッグ",
-      "淡いベージュのボウタイブラウスにきれいめカーディガン、華奢なゴールドネックレス",
-      "ネイビーのノーカラーコートに白のタートルネックリブニット、小ぶりなパールピアス",
-      "アイボリーのアンサンブルニットにグレージュのマーメイドスカート、上品なレザーバッグ",
-      "ベージュのトレンチコートに白ブラウス、清潔感のある医療事務の通勤オフィスカジュアル"
+    aw: {
+      seiso: [
+        "白のファー付きブランドダウンにブラウンのリブニット、黒ミニスカート、黒タイツ、黒レザーのブランドショルダーバッグ",
+        "ネイビーのノーカラーコートに白のタートルネックリブニット、小ぶりなパールピアス",
+        "ベージュのウールロングコートに淡いピンクのボウタイブラウス、華奢ネックレス",
+        "アイボリーのアンサンブルニットにグレージュのマーメイドスカート、上品なレザーバッグ",
+        "チャコールグレーのショートコートに白リブニット、マフラーをゆるく巻いた通勤コーデ"
+      ],
+      kireime: [
+        "淡いベージュのタイトめリブニットワンピースにブランドバッグ、華奢ブレスレット",
+        "上品な白ツイード風ショートジャケットにきれいめ細身デニム、カフェラテのカップ持ち",
+        "くすみピンクのVネックニットにロングスカート、少し光沢のある小ぶりバッグ",
+        "ブラウンのタートルニットにハイウエストデニム、白のファー付きアウターを手持ち",
+        "ピラティス用のくすみカラーウェアの上に厚手の白ジップパーカーを羽織ったスタイル"
+      ],
+      irokebit: [
+        "白の深いUネックリブタンクトップに、ベージュのざっくりニットカーディガンを肩落としで羽織る（デコルテ見せ）",
+        "コートを脱ぎ、鎖骨がきれいに見える深いUネックのオフショルダーリブニット",
+        "白のレース付きサテンキャミソールに、薄手の白カーディガンをゆるく羽織った部屋着",
+        "片肩が少し落ちるくらいの抜け感がある白のVネックモヘアニット、素肌感あり",
+        "柔らかいモコモコ素材のアイボリールームウェア（首元が広く開いたオフスタイル）"
+      ]
+    },
+    ss: {
+      seiso: [
+        "淡いブルーのシアーブラウスに白のテーパードパンツ、華奢なゴールドネックレス、通勤バッグ",
+        "白の半袖リブニットにベージュのタイトスカート、上品なレザーショルダーバッグ",
+        "薄手のベージュトレンチベストに白ブラウス、清潔感のある医療事務の春夏通勤スタイル",
+        "アイボリーのフレンチスリーブブラウスにカーディガンを肩掛け、小ぶりなパールピアス",
+        "淡いラベンダー色のきれいめカットソーに白スカート、爽やかな通勤コーデ"
+      ],
+      kireime: [
+        "白のリブキャミソールにハイウエストの細身スキニーデニム、ピンクベージュの細ベルト",
+        "淡いベージュのノースリーブリブワンピースに薄手カーディガンを肩掛け、アイスラテ持ち",
+        "白の華奢なスクエアネックトップスにきれいめデニム、ブランドミニバッグ",
+        "透け感のある白シャツをゆるく羽織ったインナーキャミソール×ロングスカート",
+        "ピラティス用の淡いくすみウェアに薄手のUVカットジップパーカーを羽織った姿"
+      ],
+      irokebit: [
+        "白のレース付きサテンキャミソールに、透け感のある薄手白カーディガンをゆるく羽織った部屋着",
+        "白の深いUネックリブタンクトップに、さらっとした薄手ベージュカーディガンを肩落としで着用",
+        "鎖骨がきれいに見える華奢ストラップのくすみベージュキャミソール、リラックスした部屋着",
+        "薄手のオーバーサイズ白シャツを部屋着として羽織り、デコルテが自然に見えるオフスタイル",
+        "お風呂上がりのさらっとした綿素材のパステル部屋着、うなじが見えるゆるまとめ髪"
+      ]
+    }
+  },
+  poses: {
+    normal: [
+      "少し緊張した微笑み",
+      "口角をふんわり上げた上品な笑顔",
+      "髪を耳にかけながらカメラをちらっと見る仕草",
+      "ほっと一息ついたオフモードの優しい表情"
     ],
-    kireime: [
-      "白のリブキャミソールにハイウエストの細身スキニーデニム、ピンクベージュの細ベルト",
-      "淡いベージュのタイトめリブニットワンピースにブランドバッグ、華奢ブレスレット",
-      "上品な白ツイード風ショートジャケットにきれいめデニム、カフェラテのカップ持ち",
-      "くすみピンクのVネックニットにフレアスカート、少し光沢のある小ぶりバッグ",
-      "ピラティス用のくすみカラーウェアの上に白のジップパーカーを羽織ったスタイル"
-    ],
-    irokebit: [
-      "白の深いUネックリブタンクトップに、ベージュのざっくりニットカーディガンを肩落としで羽織る（デコルテ見せ）",
-      "白のレース付きサテンキャミソールに、薄手の白カーディガンをゆるく羽織った部屋着",
-      "コートを脱ぎ、鎖骨がきれいに見える深いUネックのオフショルダーリブニット",
-      "片肩が少し落ちるくらいの抜け感がある白のVネックモヘアニット、素肌感あり",
-      "くすみベージュの華奢ストラップキャミソールに、透け感のある薄手ルームカーディガン",
-      "お風呂上がりの柔らかい白ルームウェア（胸元を1つ開けたリラックススタイル）"
+    aruaru: [
+      "カフェのカップを頬の近くに寄せて自然体で微笑む（小顔見せあるある）",
+      "メイクを落とす直前に「今日なぜか盛れた」と軽く首を傾げてカメラを見る",
+      "美容院帰りにツヤの出た毛先を軽く指先で触りながら自然光で微笑む",
+      "眠そうに目を細めながら布団・ソファに沈み込むリラックス微笑み",
+      "エレベーターの鏡越しに少しだけ視線を外してスマホを構える自然体な姿",
+      "帰宅してコートを脱いだ瞬間のほっと緩んだ少し照れた微笑み"
     ]
   },
-  poses: [
-    "少し緊張した微笑み",
-    "口角をふんわり上げた上品な笑顔",
-    "眠そうに目を細めたリラックス微笑み",
-    "髪を耳にかけながらカメラをちらっと見る仕草",
-    "飲み物のカップを口元に近づけながらの自然体な表情",
-    "少し照れたような柔らかい上目遣いの微笑み",
-    "ほっと一息ついたオフモードの優しい表情"
-  ],
   captions: {
-    work_gap: [
-      "朝の出勤前と帰宅後の温度差がすごい…！今日も受付業務おつかれさまでした🌙",
-      "やっとコート脱いで一息。昼間はきちんとしてる分、夜はとことんゆるめたい日☕️",
-      "今日も1日やりきった〜！帰ってきて部屋着に着替える瞬間がいちばん幸せ🥺"
-    ],
-    work_break: [
-      "お昼休みに近くのカフェでラテ補給。午後の窓口対応も丁寧にがんばる〜！",
-      "定時ダッシュ成功！夕方の涼しい風にあたりながら帰るの好き✨"
-    ],
-    holiday_out: [
-      "休日の美容メンテナンス＆お買い物の日。気になってたデパコス買えてるんるん💄",
-      "お気に入りのコーデでお出かけ☀️ 美味しいランチ食べてしっかり充電できた〜！"
-    ],
-    holiday_home: [
-      "今日は予定を入れずにひたすらおうち時間。ソファとベッドの往復が最高すぎる🛏️",
-      "お風呂上がりのスキンケア完了！間接照明だけにしてこのままゆっくり過ごします🌙"
-    ]
+    aw: {
+      balance: [
+        "朝の出勤前と帰宅後の温度差がすごい。今日もおつかれさまでした☕️",
+        "寒い日にコート脱いで暖房の部屋でゆるむ瞬間がいちばん幸せかも。",
+        "受付ずっとバタバタで頭つかった〜！帰ったら速攻ルームウェアに着替えてダラダラする予定🌙",
+        "冬になると白アウターばっかり手に取ってしまう。汚れに気をつけながら今日もいってきます❄️",
+        "美容院でトリートメントしてもらって復活！冬の乾燥に負けたくない〜✨"
+      ],
+      male: [
+        "やっと帰宅…！コート脱いだら一気にオフモードになっちゃった。今日もお疲れさま🌙",
+        "外寒すぎて帰ってきてすぐ部屋着。あったかい飲み物いれてゆっくりしよ〜☕️",
+        "お風呂入る前ってなんで一番ちょうどいい感じに撮れるんだろうね、おやすみ前の1枚。",
+        "休日の予定ぜんぶキャンセルしてソファで丸くなってる。誰かあったかいカフェラテ買ってきてほしい🥺",
+        "今日ちょっとだけ髪まとめてみたんだけど、下ろしてるのとどっちがいいかな？"
+      ],
+      reply: [
+        "冬って帰宅してからお風呂入るまでのハードル高すぎない…？みんな帰ってすぐ入れる派？🛁",
+        "白のダウンって汚れるのわかってるのに毎年買っちゃうの私だけじゃないはず⛄️",
+        "仕事終わりのご褒美、最近コンビニスイーツばっかり。今いちばんおすすめあったら教えて〜！",
+        "前髪だけ異様に決まった日に限って誰とも予定ないのほんと解せない（笑）あるあるだよね？",
+        "26歳になってからニットのチクチクにめちゃくちゃ敏感になった…着心地いいおすすめブランド知りたい🧶"
+      ]
+    },
+    ss: {
+      balance: [
+        "朝の光が気持ちいい季節になってきた〜！今日も窓口対応がんばります☀️",
+        "昼休みにアイスラテ買って復活。午後もあとひと踏ん張り☕️",
+        "暑くなってくると結局キャミに薄手カーデが一番落ち着く。お出かけ日和だった〜！",
+        "美容院で軽くしてもらったら首元涼しくて快適すぎる✨ 気分上がるな〜",
+        "帰宅してメイク落とす前の5分だけソファでぼーっとするのが日課。今日もお疲れさまでした🌙"
+      ],
+      male: [
+        "帰ってきて髪まとめた瞬間がいちばん涼しくて解放感ある〜。今日もお疲れさま🌙",
+        "ちょっとだけ薄着になってきた季節。休日の昼間にゆっくりカフェ行くの好き☕️",
+        "お風呂上がりに冷房きいた部屋でダラダラするの最高すぎる…今夜も早寝できそう。",
+        "今日のお出かけコーデ、シンプルだけどわりとお気に入りかも。どうかな？",
+        "休日なのにベッドから出られなくて気づいたらお昼。さすがにそろそろ起きる〜🛏️"
+      ],
+      reply: [
+        "夏前って急にピラティスとか運動スイッチ入らない？みんなのモチベ維持法しりたい🧘‍♀️",
+        "アイスラテ派？それとも夏でも冷房対策でホット派？私は最近ずっとアイス☕️",
+        "メイク落とす直前に限って謎に盛れる現象、あれ名前ついてほしい（笑）わかる人いる？",
+        "仕事終わりの帰り道、まだ空が明るいだけでちょっと得した気分になるのわかる人〜！",
+        "紫外線対策そろそろ本気出さないとやばいよね…おすすめの軽い日焼け止めあったら教えて☀️"
+      ]
+    }
   }
 };
 
 function init() {
+  const savedSeason = localStorage.getItem(STORAGE_KEY_SEASON);
+  currentSeason = (savedSeason === "ss" || savedSeason === "aw") ? savedSeason : "aw";
+
   const savedBase = localStorage.getItem(STORAGE_KEY_BASE);
   document.getElementById("basePrompt").value = savedBase || DEFAULT_BASE_PROMPT;
 
@@ -489,32 +631,84 @@ function init() {
     fillSelect(`style${num}`, DATA.styles);
     fillSelect(`angle${num}`, DATA.angles);
     fillSelect(`bg${num}`, DATA.bgs);
-    fillClothPresets(`clothPreset${num}`);
   });
 
+  updateSeasonUI();
   renderHistory();
   generateStory("work_gap");
 }
 
+function setSeason(season) {
+  currentSeason = season;
+  localStorage.setItem(STORAGE_KEY_SEASON, season);
+  updateSeasonUI();
+  generateStory(currentMode);
+  showToast(season === "ss" ? "春夏モードに切り替えました" : "秋冬モードに切り替えました");
+}
+
+function updateSeasonUI() {
+  const btnSS = document.getElementById("btnSS");
+  const btnAW = document.getElementById("btnAW");
+  btnSS.className = "season-btn" + (currentSeason === "ss" ? " active-ss" : "");
+  btnAW.className = "season-btn" + (currentSeason === "aw" ? " active-aw" : "");
+  [1, 2].forEach(num => fillClothPresets(`clothPreset${num}`));
+}
+
 function fillSelect(id, items) {
   const el = document.getElementById(id);
-  el.innerHTML = items.map(v => `<option value="${v}">${v}</option>`).join("");
+  el.textContent = "";
+  items.forEach(v => {
+    const opt = document.createElement("option");
+    opt.value = v;
+    opt.textContent = v;
+    el.appendChild(opt);
+  });
 }
 
 function fillClothPresets(id) {
   const el = document.getElementById(id);
-  el.innerHTML = `
-    <option value="">-- テイスト別の服装を選ぶ --</option>
-    <optgroup label="【清楚・通勤】医療事務オンモード">
-      ${DATA.outfits.seiso.map(v => `<option value="${v}">${v}</option>`).join("")}
-    </optgroup>
-    <optgroup label="【きれいめ・休日】お出かけ・美容">
-      ${DATA.outfits.kireime.map(v => `<option value="${v}">${v}</option>`).join("")}
-    </optgroup>
-    <optgroup label="【ほんのり色気】帰宅後・おうち時間">
-      ${DATA.outfits.irokebit.map(v => `<option value="${v}">${v}</option>`).join("")}
-    </optgroup>
-  `;
+  const seasonData = DATA.outfits[currentSeason];
+  const seasonLabel = currentSeason === "ss" ? "春夏" : "秋冬";
+  el.textContent = "";
+
+  const defOpt = document.createElement("option");
+  defOpt.value = "";
+  defOpt.textContent = `-- ${seasonLabel}テイスト別コーデを選ぶ --`;
+  el.appendChild(defOpt);
+
+  const groups = [
+    { label: `【清楚・通勤（${seasonLabel}）】医療事務オンモード`, items: seasonData.seiso },
+    { label: `【きれいめ・休日（${seasonLabel}）】お出かけ・美容`, items: seasonData.kireime },
+    { label: `【ほんのり色気（${seasonLabel}）】帰宅後・おうち時間`, items: seasonData.irokebit }
+  ];
+
+  groups.forEach(g => {
+    const og = document.createElement("optgroup");
+    og.label = g.label;
+    g.items.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      og.appendChild(opt);
+    });
+    el.appendChild(og);
+  });
+}
+
+function onPlaceChange(num) {
+  const placeLabel = document.getElementById(`place${num}`).value;
+  const placeObj = DATA.places.find(p => p.label === placeLabel);
+  if (placeObj) {
+    if (placeObj.mirror) {
+      document.getElementById(`style${num}`).value = "鏡越し自撮り（スマホ持ち）";
+      if (placeObj.short === "姿見越し") {
+        document.getElementById(`angle${num}`).value = "全身（鏡越し）";
+      }
+    } else if (document.getElementById(`style${num}`).value === "鏡越し自撮り（スマホ持ち）") {
+      document.getElementById(`style${num}`).value = "自撮り（スマホ画角外）";
+    }
+  }
+  updatePreview();
 }
 
 function applyClothPreset(num) {
@@ -525,15 +719,21 @@ function applyClothPreset(num) {
   }
 }
 
-function saveBasePrompt() {
-  localStorage.setItem(STORAGE_KEY_BASE, document.getElementById("basePrompt").value);
+function getRecentHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY_HIST) || "[]");
+  } catch {
+    return [];
+  }
 }
 
-function resetBasePrompt() {
-  document.getElementById("basePrompt").value = DEFAULT_BASE_PROMPT;
-  saveBasePrompt();
-  updatePreview();
-  showToast("初期プロンプトに戻しました");
+function pickAvoidingRecent(arr, recentTexts) {
+  const filtered = arr.filter(item => {
+    const key = typeof item === "string" ? item : item.short;
+    return !recentTexts.some(r => r.includes(key));
+  });
+  const pool = filtered.length > 0 ? filtered : arr;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
 function pick(arr) {
@@ -553,40 +753,45 @@ function setSlot(num, cfg) {
 }
 
 function generateStory(mode) {
+  currentMode = mode;
+  const sOut = DATA.outfits[currentSeason];
+  const recent = getRecentHistory().slice(0, 5).map(h => h.summary + " " + (h.cloth || ""));
+
   if (mode === "work_gap") {
+    const morningPlace = pickAvoidingRecent([DATA.places[0], DATA.places[7]], recent); // 玄関 or エレベーター
     setSlot(1, {
       time: "朝",
-      place: DATA.places[0].label, // 玄関
+      place: morningPlace.label,
       hair: pick([DATA.hairs[0], DATA.hairs[2], DATA.hairs[3]]),
-      style: "自撮り（スマホ画角外）",
-      angle: "顔アップ",
+      style: morningPlace.mirror ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
+      angle: morningPlace.mirror ? "バストアップ" : "顔アップ",
       bg: "極力背景は映さない",
-      cloth: pick(DATA.outfits.seiso),
-      pose: pick(["少し緊張した微笑み", "口角をふんわり上げた上品な笑顔", "髪を耳にかけながらカメラをちらっと見る仕草"])
+      cloth: pickAvoidingRecent(sOut.seiso, recent),
+      pose: pick(DATA.poses.normal)
     });
-    const nightRoom = pick([DATA.places[1].label, DATA.places[2].label, DATA.places[3].label]);
+    const nightRoom = pickAvoidingRecent([DATA.places[1], DATA.places[2], DATA.places[3]], recent);
     setSlot(2, {
       time: "夜",
-      place: nightRoom,
-      hair: pick([DATA.hairs[1], DATA.hairs[0], DATA.hairs[5]]),
-      style: nightRoom.includes("脱衣所") ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
-      angle: nightRoom.includes("脱衣所") ? "ウエストアップ" : pick(["顔ドアップ", "バストアップ"]),
+      place: nightRoom.label,
+      hair: pick([DATA.hairs[1], DATA.hairs[5], DATA.hairs[0]]),
+      style: nightRoom.mirror ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
+      angle: nightRoom.mirror ? "ウエストアップ" : pick(["顔ドアップ", "バストアップ"]),
       bg: "部屋の雰囲気が少しわかる程度",
-      cloth: pick(DATA.outfits.irokebit),
-      pose: pick(["ほっと一息ついたオフモードの優しい表情", "少し照れたような柔らかい上目遣いの微笑み", "少し緊張した微笑み"])
+      cloth: pickAvoidingRecent(sOut.irokebit, recent),
+      pose: pick([DATA.poses.aruaru[1], DATA.poses.aruaru[5], DATA.poses.normal[3]])
     });
   } else if (mode === "work_break") {
     const dayHair = pick([DATA.hairs[0], DATA.hairs[2], DATA.hairs[3]]);
-    const dayCloth = pick(DATA.outfits.seiso);
+    const dayCloth = pickAvoidingRecent(sOut.seiso, recent);
     setSlot(1, {
       time: "昼",
-      place: DATA.places[5].label, // カフェ
+      place: DATA.places[5].label, // カフェ窓際
       hair: dayHair,
       style: "自撮り（スマホ画角外）",
       angle: "バストアップ",
       bg: "生活感や背景を自然に映す",
       cloth: dayCloth,
-      pose: "飲み物のカップを口元に近づけながらの自然体な表情"
+      pose: DATA.poses.aruaru[0]
     });
     setSlot(2, {
       time: "夕方",
@@ -599,29 +804,29 @@ function generateStory(mode) {
       pose: "ほっと一息ついたオフモードの優しい表情"
     });
   } else if (mode === "holiday_out") {
-    const startPlace = pick([DATA.places[4].label, DATA.places[0].label]); // 姿見 or 玄関
+    const startPlace = pickAvoidingRecent([DATA.places[4], DATA.places[0], DATA.places[7]], recent);
     const holiHair = pick([DATA.hairs[0], DATA.hairs[4], DATA.hairs[2]]);
-    const holiCloth = pick(DATA.outfits.kireime);
+    const holiCloth = pickAvoidingRecent(sOut.kireime, recent);
     setSlot(1, {
       time: "朝",
-      place: startPlace,
+      place: startPlace.label,
       hair: holiHair,
-      style: startPlace.includes("姿見") ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
-      angle: startPlace.includes("姿見") ? "全身（鏡越し）" : "バストアップ",
+      style: startPlace.mirror ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
+      angle: startPlace.short === "姿見越し" ? "全身（鏡越し）" : "バストアップ",
       bg: "部屋の雰囲気が少しわかる程度",
       cloth: holiCloth,
-      pose: "口角をふんわり上げた上品な笑顔"
+      pose: startPlace.mirror ? DATA.poses.aruaru[4] : DATA.poses.normal[1]
     });
-    const outPlace = pick([DATA.places[5].label, DATA.places[7].label, DATA.places[8].label, DATA.places[9].label, DATA.places[10].label]);
+    const outPlace = pickAvoidingRecent([DATA.places[5], DATA.places[8], DATA.places[9], DATA.places[10], DATA.places[11]], recent);
     setSlot(2, {
-      time: outPlace.includes("ディナー") ? "夜" : "昼",
-      place: outPlace,
-      hair: holiHair,
-      style: pick(["友人撮影風（他撮り）", "自撮り（スマホ画角外）"]),
+      time: outPlace.short === "ディナー" ? "夜" : "昼",
+      place: outPlace.label,
+      hair: outPlace.short === "美容院帰り" ? DATA.hairs[4] : holiHair,
+      style: outPlace.mirror ? "鏡越し自撮り（スマホ持ち）" : pick(["友人撮影風（他撮り）", "自撮り（スマホ画角外）"]),
       angle: "バストアップ",
       bg: "生活感や背景を自然に映す",
       cloth: holiCloth,
-      pose: pick(DATA.poses)
+      pose: outPlace.short === "美容院帰り" ? DATA.poses.aruaru[2] : pick(DATA.poses.aruaru)
     });
   } else if (mode === "holiday_home") {
     setSlot(1, {
@@ -631,44 +836,131 @@ function generateStory(mode) {
       style: "自撮り（スマホ画角外）",
       angle: "バストアップ",
       bg: "部屋の雰囲気が少しわかる程度",
-      cloth: pick(DATA.outfits.irokebit),
-      pose: "眠そうに目を細めたリラックス微笑み"
+      cloth: pickAvoidingRecent(sOut.irokebit, recent),
+      pose: DATA.poses.aruaru[3]
     });
-    const room2 = pick([DATA.places[1].label, DATA.places[3].label]);
+    const room2 = pickAvoidingRecent([DATA.places[1], DATA.places[3]], recent);
     setSlot(2, {
       time: "夜",
-      place: room2,
+      place: room2.label,
       hair: pick([DATA.hairs[1], DATA.hairs[5]]),
-      style: room2.includes("脱衣所") ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
-      angle: room2.includes("脱衣所") ? "ウエストアップ" : "バストアップ",
+      style: room2.mirror ? "鏡越し自撮り（スマホ持ち）" : "自撮り（スマホ画角外）",
+      angle: room2.mirror ? "ウエストアップ" : "バストアップ",
       bg: "部屋の雰囲気が少しわかる程度",
-      cloth: pick(DATA.outfits.irokebit),
-      pose: "少し照れたような柔らかい上目遣いの微笑み"
+      cloth: pickAvoidingRecent(sOut.irokebit, recent),
+      pose: DATA.poses.aruaru[1]
     });
+  } else if (mode === "sns_aruaru") {
+    const aruaruPairs = [
+      () => {
+        setSlot(1, {
+          time: "昼",
+          place: DATA.places[8].label, // 美容院帰り
+          hair: DATA.hairs[4],
+          style: "自撮り（スマホ画角外）",
+          angle: "顔アップ",
+          bg: "生活感や背景を自然に映す",
+          cloth: pick(sOut.kireime),
+          pose: DATA.poses.aruaru[2]
+        });
+        setSlot(2, {
+          time: "夜",
+          place: DATA.places[3].label, // 脱衣所
+          hair: DATA.hairs[5],
+          style: "鏡越し自撮り（スマホ持ち）",
+          angle: "ウエストアップ",
+          bg: "部屋の雰囲気が少しわかる程度",
+          cloth: pick(sOut.irokebit),
+          pose: DATA.poses.aruaru[1]
+        });
+      },
+      () => {
+        setSlot(1, {
+          time: "朝",
+          place: DATA.places[7].label, // エレベーター
+          hair: DATA.hairs[2],
+          style: "鏡越し自撮り（スマホ持ち）",
+          angle: "ウエストアップ",
+          bg: "部屋の雰囲気が少しわかる程度",
+          cloth: pick(sOut.seiso),
+          pose: DATA.poses.aruaru[4]
+        });
+        setSlot(2, {
+          time: "昼",
+          place: DATA.places[5].label, // カフェ窓際
+          hair: DATA.hairs[2],
+          style: "自撮り（スマホ画角外）",
+          angle: "バストアップ",
+          bg: "生活感や背景を自然に映す",
+          cloth: document.getElementById("cloth1").value,
+          pose: DATA.poses.aruaru[0]
+        });
+      },
+      () => {
+        setSlot(1, {
+          time: "昼",
+          place: DATA.places[4].label, // 姿見越し
+          hair: DATA.hairs[0],
+          style: "鏡越し自撮り（スマホ持ち）",
+          angle: "全身（鏡越し）",
+          bg: "部屋の雰囲気が少しわかる程度",
+          cloth: pick(sOut.kireime),
+          pose: "お出かけ前の全身コーデチェック、自然な佇まい"
+        });
+        setSlot(2, {
+          time: "夜",
+          place: DATA.places[1].label, // リビング
+          hair: DATA.hairs[1],
+          style: "自撮り（スマホ画角外）",
+          angle: "顔ドアップ",
+          bg: "部屋の雰囲気が少しわかる程度",
+          cloth: pick(sOut.irokebit),
+          pose: DATA.poses.aruaru[5]
+        });
+      }
+    ];
+    pick(aruaruPairs)();
   }
 
-  document.getElementById("captionOutput").textContent = "💬 投稿文案: " + pick(DATA.captions[mode]);
+  refreshCaption();
   updatePreview();
 }
 
 function randomizeSlot(num) {
-  const placeObj = pick(DATA.places);
-  const isMirror = placeObj.short === "脱衣所" || placeObj.short === "姿見越し";
+  const sOut = DATA.outfits[currentSeason];
+  const recent = getRecentHistory().slice(0, 5).map(h => h.summary);
+  const placeObj = pickAvoidingRecent(DATA.places, recent);
   const clothPool = placeObj.type === "home"
-    ? (placeObj.short === "姿見越し" ? DATA.outfits.kireime : DATA.outfits.irokebit)
-    : pick([DATA.outfits.seiso, DATA.outfits.kireime]);
+    ? (placeObj.short === "姿見越し" ? sOut.kireime : sOut.irokebit)
+    : pick([sOut.seiso, sOut.kireime]);
 
   setSlot(num, {
     time: pick(DATA.times),
     place: placeObj.label,
     hair: pick(DATA.hairs),
-    style: isMirror ? "鏡越し自撮り（スマホ持ち）" : pick(["自撮り（スマホ画角外）", "友人撮影風（他撮り）"]),
+    style: placeObj.mirror ? "鏡越し自撮り（スマホ持ち）" : pick(["自撮り（スマホ画角外）", "友人撮影風（他撮り）"]),
     angle: placeObj.short === "姿見越し" ? "全身（鏡越し）" : pick(["顔ドアップ", "顔アップ", "バストアップ"]),
     bg: pick(DATA.bgs),
     cloth: pick(clothPool),
-    pose: pick(DATA.poses)
+    pose: pick([...DATA.poses.normal, ...DATA.poses.aruaru])
   });
   updatePreview();
+}
+
+function setTone(tone) {
+  currentTone = tone;
+  ["balance", "male", "reply"].forEach(t => {
+    document.getElementById(`tone_${t}`).className = "tone-btn" + (t === tone ? " active" : "");
+  });
+  refreshCaption();
+}
+
+function refreshCaption() {
+  const pool = DATA.captions[currentSeason][currentTone];
+  const current = document.getElementById("captionOutput").textContent;
+  const candidates = pool.filter(c => c !== current);
+  const next = candidates.length > 0 ? pick(candidates) : pick(pool);
+  document.getElementById("captionOutput").textContent = next;
 }
 
 function formatSlot(num) {
@@ -693,44 +985,115 @@ ${bg}
 }
 
 function updatePreview() {
-  const base = document.getElementById("basePrompt").value.trim();
-  const fullText = `${base}\n\n${formatSlot(1)}\n\n${formatSlot(2)}`;
+  const s1 = document.getElementById("style1").value;
+  const s2 = document.getElementById("style2").value;
+  const hasMirror = s1.includes("鏡越し") || s2.includes("鏡越し");
+  const phoneRule = hasMirror
+    ? "通常自撮りカットはスマホは画角外（鏡越し指定のカットのみスマホを自然に手に持つ）"
+    : "スマホは画角外";
+
+  const baseRaw = document.getElementById("basePrompt").value.trim();
+  const baseResolved = baseRaw.replace("{{PHONE_RULE}}", phoneRule);
+  const seasonNote = currentSeason === "ss" ? "季節感：春夏（軽やかな光と服装）" : "季節感：秋冬（柔らかな光と秋冬素材）";
+
+  const fullText = `${baseResolved}\n\n${seasonNote}\n\n${formatSlot(1)}\n\n${formatSlot(2)}`;
   document.getElementById("promptOutput").textContent = fullText;
 }
 
-function copyAll() {
+function safeCopy(text, successMsg) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(successMsg);
+    }).catch(() => fallbackCopy(text, successMsg));
+  } else {
+    fallbackCopy(text, successMsg);
+  }
+}
+
+function fallbackCopy(text, successMsg) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand("copy");
+    showToast(successMsg);
+  } catch {
+    showToast("コピーに失敗しました。手動で選択してください");
+  }
+  document.body.removeChild(ta);
+}
+
+function copyPrompt() {
   const text = document.getElementById("promptOutput").textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    showToast("プロンプトをコピーしました！");
-    saveHistory();
-  });
+  safeCopy(text, "画像プロンプトをコピーしました！");
+  saveHistory();
+}
+
+function copyCaption() {
+  const text = document.getElementById("captionOutput").textContent;
+  safeCopy(text, "Threads投稿文をコピーしました！");
+}
+
+function saveBasePrompt() {
+  localStorage.setItem(STORAGE_KEY_BASE, document.getElementById("basePrompt").value);
+}
+
+function resetBasePrompt() {
+  document.getElementById("basePrompt").value = DEFAULT_BASE_PROMPT;
+  saveBasePrompt();
+  updatePreview();
+  showToast("初期プロンプトに戻しました");
 }
 
 function saveHistory() {
   const p1 = document.getElementById("place1").value.split("（")[0];
   const p2 = document.getElementById("place2").value.split("（")[0];
+  const c1 = document.getElementById("cloth1").value.slice(0, 12);
   const now = new Date();
   const dateStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
-  const history = JSON.parse(localStorage.getItem(STORAGE_KEY_HIST) || "[]");
-  history.unshift({ date: dateStr, summary: `${p1} × ${p2}` });
-  localStorage.setItem(STORAGE_KEY_HIST, JSON.stringify(history.slice(0, 10)));
+  const history = getRecentHistory();
+  history.unshift({
+    date: dateStr,
+    summary: `[${currentSeason.toUpperCase()}] ${p1} × ${p2}`,
+    cloth: c1
+  });
+  localStorage.setItem(STORAGE_KEY_HIST, JSON.stringify(history.slice(0, 15)));
   renderHistory();
 }
 
 function renderHistory() {
-  const history = JSON.parse(localStorage.getItem(STORAGE_KEY_HIST) || "[]");
+  const history = getRecentHistory();
   document.getElementById("recentBadge").textContent = `履歴: ${history.length}件`;
   const list = document.getElementById("historyList");
+  list.textContent = "";
+
   if (history.length === 0) {
-    list.innerHTML = "<li>まだ履歴がありません</li>";
+    const li = document.createElement("li");
+    li.textContent = "まだ履歴がありません";
+    list.appendChild(li);
     return;
   }
-  list.innerHTML = history.map(h => `<li><span>${h.summary}</span><span>${h.date}</span></li>`).join("");
+
+  history.forEach(h => {
+    const li = document.createElement("li");
+    const spanSum = document.createElement("span");
+    spanSum.textContent = h.summary;
+    const spanDate = document.createElement("span");
+    spanDate.textContent = h.date;
+    li.appendChild(spanSum);
+    li.appendChild(spanDate);
+    list.appendChild(li);
+  });
 }
 
 function clearHistory() {
   localStorage.removeItem(STORAGE_KEY_HIST);
   renderHistory();
+  showToast("履歴をクリアしました");
 }
 
 function showToast(msg) {
