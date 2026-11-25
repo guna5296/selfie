@@ -13,6 +13,8 @@
     --accent: #b57463;
     --accent-soft: #f7ece8;
     --border: #e6e0da;
+    --r18: #8c2640;
+    --r18-soft: #faeef1;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body {
@@ -36,7 +38,7 @@
     padding: 10px 14px 6px;
   }
   .header-row h1 {
-    font-size: 0.96rem;
+    font-size: 0.94rem;
     font-weight: 700;
   }
   .season-toggle {
@@ -61,17 +63,18 @@
   }
   .tabs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 0 8px;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 0 4px;
   }
   .tab-btn {
     border: none;
     background: none;
-    padding: 10px 4px;
-    font-size: 0.8rem;
+    padding: 10px 2px;
+    font-size: 0.74rem;
     font-weight: 700;
     color: var(--sub);
     border-bottom: 2.5px solid transparent;
+    white-space: nowrap;
   }
   .tab-btn.active {
     color: var(--accent);
@@ -100,6 +103,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
   }
   .story-grid {
     display: grid;
@@ -112,13 +116,13 @@
     border-radius: 12px;
     padding: 10px 9px;
     text-align: left;
-    font-size: 0.78rem;
+    font-size: 0.77rem;
     font-weight: 700;
     color: var(--text);
   }
   .story-btn span {
     display: block;
-    font-size: 0.65rem;
+    font-size: 0.64rem;
     font-weight: 400;
     color: var(--sub);
     margin-top: 2px;
@@ -128,6 +132,18 @@
     background: var(--accent-soft);
     color: var(--accent);
   }
+  .story-btn.r18-btn {
+    grid-column: 1 / -1;
+    border-color: #e6c5ce;
+    background: #fff9fa;
+    color: var(--r18);
+  }
+  .story-btn.r18-btn.selected {
+    border-color: var(--r18);
+    background: var(--r18-soft);
+    color: var(--r18);
+    box-shadow: 0 0 0 1px var(--r18) inset;
+  }
 
   .summary-box {
     background: #faf8f6;
@@ -136,11 +152,16 @@
     margin-bottom: 8px;
     border-left: 3px solid var(--accent);
   }
+  .summary-box.r18-accent {
+    border-left-color: var(--r18);
+    background: #fdf6f8;
+  }
   .summary-box h3 {
     font-size: 0.78rem;
     color: var(--accent);
     margin-bottom: 3px;
   }
+  .summary-box.r18-accent h3 { color: var(--r18); }
   .summary-box p {
     font-size: 0.8rem;
     line-height: 1.45;
@@ -172,11 +193,218 @@
     border: none;
     background: var(--accent-soft);
     color: var(--accent);
-    font-size: 0.74rem;
+    font-size: 0.73rem;
     font-weight: 700;
     padding: 6px 10px;
     border-radius: 8px;
   }
+  .btn-full {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 11px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-outline {
+    width: 100%;
+    border: 1px dashed var(--accent);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.77rem;
+    font-weight: 700;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  /* クローゼット */
+  .upload-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .thumb-preview {
+    width: 66px;
+    height: 88px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #f2efeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.66rem;
+    color: var(--sub);
+    overflow: hidden;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .thumb-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .file-label {
+    flex: 1;
+    display: block;
+    text-align: center;
+    padding: 12px 10px;
+    background: #eee9e4;
+    border-radius: 10px;
+    font-size: 0.79rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .filter-pills {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+  .pill {
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 99px;
+    padding: 5px 11px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--sub);
+    white-space: nowrap;
+  }
+  .pill.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .closet-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .closet-item:last-child { border-bottom: none; }
+  .closet-img-wrap {
+    width: 68px;
+    height: 92px;
+    border-radius: 8px;
+    background: #f0ece7;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .closet-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .zoom-hint {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 0.58rem;
+    padding: 1px 4px;
+    border-radius: 4px;
+  }
+  .closet-body { flex: 1; min-width: 0; }
+  .closet-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .cat-tag {
+    font-size: 0.66rem;
+    font-weight: 700;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 99px;
+  }
+  .cat-tag.r18-tag {
+    background: var(--r18-soft);
+    color: var(--r18);
+  }
+  .closet-text {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-bottom: 7px;
+    word-break: break-word;
+  }
+  .closet-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .closet-actions button {
+    border: none;
+    border-radius: 7px;
+    padding: 6px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .btn-wear { background: #eee9e4; color: var(--text); }
+  .btn-del { background: none; color: #a89f99; margin-left: auto; }
+
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--sub);
+    margin-top: 8px;
+  }
+  .toggle-row input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+  /* 拡大モーダル */
+  .modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-bg.open { display: flex; }
+  .modal-card {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 14px;
+  }
+  .modal-img {
+    width: 100%;
+    max-height: 55vh;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #1a1a1a;
+    margin-bottom: 10px;
+  }
+  .modal-text {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .modal-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
   .output-pre {
     background: #faf9f7;
     border: 1px solid var(--border);
@@ -233,7 +461,8 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
-    z-index: 50;
+    z-index: 120;
+    white-space: nowrap;
   }
   .toast.show { opacity: 1; }
 </style>
@@ -250,6 +479,7 @@
   </div>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('home', this)">🎲 作成</button>
+    <button class="tab-btn" onclick="switchTab('closet', this)">👗 服</button>
     <button class="tab-btn" onclick="switchTab('slot1', this)">1枚目</button>
     <button class="tab-btn" onclick="switchTab('slot2', this)">2枚目</button>
     <button class="tab-btn" onclick="switchTab('output', this)">📋 出力</button>
@@ -286,6 +516,10 @@
           🛏️ 休日：おうち時間
           <span>朝ベッド ➔ 宅トレ・脱衣所</span>
         </button>
+        <button class="story-btn r18-btn" id="mode-r18_edge" onclick="selectMode('r18_edge')">
+          🔞 18禁すれすれ（SNS投稿ギリギリ・生成OKライン）
+          <span>湯上がりタオル・透け総レース・彼シャツ・シーツ包み・見下ろし＆超アップ</span>
+        </button>
       </div>
     </div>
 
@@ -294,11 +528,11 @@
         <span>現在の2枚構成プレビュー</span>
         <button class="mini-btn" onclick="rerollClothesOnly()">👗 服・髪だけ変える</button>
       </div>
-      <div class="summary-box" onclick="switchTabByIndex(1)">
+      <div class="summary-box" id="sumBox1" onclick="switchTabByIndex(2)">
         <h3>1枚目（左）タップで微調整 ›</h3>
         <p id="sum1"></p>
       </div>
-      <div class="summary-box" onclick="switchTabByIndex(2)">
+      <div class="summary-box" id="sumBox2" onclick="switchTabByIndex(3)">
         <h3>2枚目（右）タップで微調整 ›</h3>
         <p id="sum2"></p>
       </div>
@@ -306,7 +540,64 @@
     </div>
   </div>
 
-  <!-- タブ2：1枚目 -->
+  <!-- タブ2：着画クローゼット（IndexedDB無料大容量） -->
+  <div id="tab-closet" class="panel">
+    <div class="card">
+      <div class="card-title">
+        <span>👗 主人公の着画・服を登録（無料・大容量）</span>
+      </div>
+      <button class="btn-outline" onclick="copyExtractHelper()">
+        ✨ Geminiに服を言語化してもらう指示文をコピー
+      </button>
+
+      <div class="upload-row">
+        <div class="thumb-preview" id="thumbPreview">着画・服<br>画像なし</div>
+        <label class="file-label" for="closetFile">
+          📷 主人公の着画 / 服スクショを添付
+        </label>
+        <input type="file" id="closetFile" accept="image/*" style="display:none;" onchange="handleClosetImage(this)">
+      </div>
+
+      <div class="field">
+        <label>カテゴリー</label>
+        <select id="closetCat">
+          <option value="holiday">💋 休日（少しセクシーめ・お出かけ）</option>
+          <option value="commute">🏥 通勤（着替えやすい上品私服）</option>
+          <option value="room">🌙 部屋着・エレガントパジャマ</option>
+          <option value="r18">🔞 18禁すれすれ（SNSギリギリ）</option>
+          <option value="gym">🏊‍♀️ ジム・水着・宅トレ</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>服装プロンプト（思い出しメモ兼プロンプト）</label>
+        <textarea id="closetText" rows="2" placeholder="例：深みレッドのVネックカシュクールリブニット、黒タイトミニ、透け黒タイツ"></textarea>
+      </div>
+      <button class="btn-full" onclick="addClosetItem()">＋ クローゼットに保存</button>
+
+      <label class="toggle-row">
+        <input type="checkbox" id="useMyClosetCheck" checked onchange="saveClosetToggle()">
+        登録した服を「🎲 再生成」ガチャにも自動で混ぜる
+      </label>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>マイ・クローゼット一覧（写真タップで拡大）</span>
+        <span style="font-size:0.74rem; color:var(--sub);" id="closetCount">0着</span>
+      </div>
+      <div class="filter-pills">
+        <button class="pill active" onclick="filterCloset('all', this)">すべて</button>
+        <button class="pill" onclick="filterCloset('holiday', this)">💋 休日</button>
+        <button class="pill" onclick="filterCloset('commute', this)">🏥 通勤</button>
+        <button class="pill" onclick="filterCloset('room', this)">🌙 部屋着</button>
+        <button class="pill" onclick="filterCloset('r18', this)">🔞 すれすれ</button>
+        <button class="pill" onclick="filterCloset('gym', this)">🏊‍♀️ ジム</button>
+      </div>
+      <div id="closetList"></div>
+    </div>
+  </div>
+
+  <!-- タブ3：1枚目 -->
   <div id="tab-slot1" class="panel">
     <div class="card">
       <div class="card-title">
@@ -333,7 +624,7 @@
     </div>
   </div>
 
-  <!-- タブ3：2枚目 -->
+  <!-- タブ4：2枚目 -->
   <div id="tab-slot2" class="panel">
     <div class="card">
       <div class="card-title">
@@ -360,7 +651,7 @@
     </div>
   </div>
 
-  <!-- タブ4：出力＆固定設定 -->
+  <!-- タブ5：出力＆固定設定 -->
   <div id="tab-output" class="panel">
     <div class="card">
       <div class="card-title"><span>生成された完全プロンプト</span></div>
@@ -379,6 +670,20 @@
       </div>
       <div id="historyList"></div>
     </div>
+  </div>
+</div>
+
+<!-- 着画拡大モーダル -->
+<div class="modal-bg" id="photoModal" onclick="closeModal(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <img id="modalImg" class="modal-img" src="" alt="">
+    <div id="modalTag" style="margin-bottom:6px;"></div>
+    <div id="modalText" class="modal-text"></div>
+    <div class="modal-btns">
+      <button class="action-btn btn-copy" style="padding:10px;font-size:0.8rem;" id="modalWear1">1枚目に着せる</button>
+      <button class="action-btn btn-copy" style="padding:10px;font-size:0.8rem;" id="modalWear2">2枚目に着せる</button>
+    </div>
+    <button class="action-btn btn-roll" style="width:100%;padding:10px;font-size:0.8rem;" onclick="closeModal()">閉じる</button>
   </div>
 </div>
 
@@ -409,6 +714,19 @@ const DEFAULT_BASE_PROMPT = `生っぽく
 
 ポーズは作り込みすぎない。日常の一瞬を偶然撮影したような自然な仕草を優先。笑顔も完璧な営業スマイルではなく自然な笑顔。背景に個人情報、看板、名札、病院名、住所、電話番号などを入れない。過剰なAI美化、過剰な肌補正、CG感、イラスト感を避ける。`;
 
+const R18_GUARDRAIL_LINE = `【SNSギリギリ色気表現ルール】
+SNS（Threads等）に投稿できる範囲および画像生成可能なスレスレのグラビア・プライベート色気表現を維持すること。直接的な裸体や規約違反となる露出は避け、レースの透け感・バスタオル・シーツ・服の隙間・照明の陰影・アングルによって上品かつ艶っぽく隠す演出にする。`;
+
+const EXTRACT_HELPER_PROMPT = `この画像の服装（トップス・ボトムス・インナー・素材・色・シルエット・小物）だけを、画像生成AI用の日本語プロンプトとして1行（40〜80文字程度）にまとめてください。人物の顔や背景の説明は不要です。そのままアプリに貼り付けられる形で1行だけ出力してください。`;
+
+const CAT_LABELS = {
+  holiday: "💋 休日",
+  commute: "🏥 通勤",
+  room: "🌙 部屋着",
+  r18: "🔞 すれすれ",
+  gym: "🏊‍♀️ ジム"
+};
+
 const DB = {
   times: ["朝", "昼", "夕方", "夜"],
   places: [
@@ -433,7 +751,8 @@ const DB = {
     "顔アップ",
     "バストアップ",
     "ウエストアップ",
-    "目元を画角外に切った口元〜デコルテの超アップ",
+    "やや上方からの見下ろしアングル（デコルテと上目遣い強調）",
+    "目元を画角外に切った口元〜デコルテ・谷間の超アップ",
     "全身（鏡越し）"
   ],
   bgs: ["極力背景は映さない", "部屋の雰囲気が少しわかる程度", "生活感や背景を自然に映す"],
@@ -450,8 +769,12 @@ const DB = {
       "サイドを小さめクリップで留めた大人っぽいハーフアップ",
       "ストレートセミロング（下ろし）"
     ],
-    wet: [
-      "プール・シャワー後の少し濡れた無造作セミロング（首にベージュのタオル掛け）"
+    wet: ["プール・シャワー後の少し濡れた無造作セミロング（首にベージュのタオル掛け）"],
+    r18: [
+      "お風呂上がりの少し濡れた艶のある無造作セミロング（顔周りに少し張り付く色気）",
+      "片側に髪を寄せてうなじと鎖骨を見せるストレートセミロング",
+      "ベッドで少し乱れた柔らかいセミロング（寝起き・まどろみ感）",
+      "うなじが露わになるゆるめの無造作まとめ髪（後れ毛多め）"
     ],
     holiday: [
       "毛先ゆる巻きセミロング（色っぽく揺れる感じ）",
@@ -471,6 +794,9 @@ const DB = {
     "仕事中のまとめ髪をほどいた少しゆるいセミロング",
     "後れ毛を残したゆるいお団子まとめ髪",
     "うなじが見える後れ毛ありのゆるまとめ髪",
+    "お風呂上がりの少し濡れた艶のある無造作セミロング（顔周りに少し張り付く色気）",
+    "片側に髪を寄せてうなじと鎖骨を見せるストレートセミロング",
+    "ベッドで少し乱れた柔らかいセミロング（寝起き・まどろみ感）",
     "プール・シャワー後の少し濡れた無造作セミロング（首にベージュのタオル掛け）"
   ],
   poses: {
@@ -502,24 +828,93 @@ const DB = {
       "ソファに深く腰掛け、少し色気のある落ち着いた微笑み",
       "お風呂上がりで少し上気した肌の自然な微笑み"
     ],
+    r18: [
+      "ベッドにうつ伏せになり、胸元のラインが強調される角度で少し唇を半開きにした無防備な表情",
+      "少し上気した頬と潤んだ瞳で、カメラを見上げるように甘く微笑む",
+      "片側の肩からガウン・カーディガンがずり落ちかけているのを気にせず、少し照れながら見つめる",
+      "鏡越しに鎖骨とウエストのラインを映しながら、少し恥じらいのある大人っぽい視線",
+      "湯上がりでうっすらツヤのある素肌、タオルや襟元を片手でそっと押さえながらカメラを見る",
+      "ソファに深くもたれかかり、少しアンニュイで挑発的な柔らかい微笑み",
+      "ベッドのシーツを胸元で抱え込み、上目遣いで少し眠そうに微笑む"
+    ],
     gym: [
       "鏡越しに視線を少し外して照れ笑いする表情",
       "運動後の心地よい疲労感のある爽やかな微笑み",
       "スマホで口元を隠しながら鏡越しに目元だけ映す仕草"
     ]
   },
+  // 🔞 18禁すれすれ（SNS投稿＆生成OKのギリギリ攻め衣装）
+  r18Outfits: [
+    {
+      text: "湯上がりの白いふわふわバスタオル1枚を胸元でしっかり巻いた姿（鎖骨・肩・デコルテが露出し、うっすら上気した艶のある素肌）",
+      places: ["脱衣所", "寝室"],
+      wet: true
+    },
+    {
+      text: "透け感のある黒の総花柄レース長袖ネグリジェ（内側に着た黒レースのインナーシルエットがほのかに透ける）",
+      places: ["リビング", "寝室"],
+      wet: false
+    },
+    {
+      text: "透け感のある白の総花柄レース長袖ルームワンピース（下に着た白いインナーがうっすら透けて見える）",
+      places: ["リビング", "寝室"],
+      wet: false
+    },
+    {
+      text: "胸元のボタンを3つほど大きく開けたオーバーサイズの白シャツ（彼シャツ風・鎖骨と谷間が覗き、裾は太ももが隠れるギリギリ丈）",
+      places: ["寝室", "リビング", "姿見越し"],
+      wet: false
+    },
+    {
+      text: "艶のある深いワインレッドのサテンキャミソール＆レースガウン（片側の肩からガウンがずり落ちかけ、デコルテと谷間が際立つ）",
+      places: ["リビング", "寝室"],
+      wet: false
+    },
+    {
+      text: "深いネイビーの艶サテン＆繊細レースのベビードール風キャミソール（胸元の深いVラインと光沢が暖色照明に映える）",
+      places: ["寝室", "リビング"],
+      wet: false
+    },
+    {
+      text: "白の薄手ジップアップパーカーの前ファスナーをみぞおち付近まで大胆に下げ、内側の繊細な白レースインナーがはっきり覗く姿",
+      places: ["寝室", "リビング"],
+      wet: false
+    },
+    {
+      text: "ベッドの白いシーツを胸元まで抱え込む姿（華奢な両肩と鎖骨、素肌のラインが覗きつつ露出はシーツで完全に隠れている）",
+      places: ["寝室"],
+      wet: false
+    },
+    {
+      text: "繊細な黒レースのブラレット風インナーの上に、ベージュのざっくりニットカーディガンを両肩から落とし気味に羽織る",
+      places: ["リビング", "寝室"],
+      wet: false
+    },
+    {
+      text: "フロントジッパーを胸元まで大胆に下げた白×黒パイピングのハイレグ気味ワンピース水着（脱衣所の試着・鏡越し）",
+      places: ["脱衣所", "プール更衣室"],
+      wet: true
+    },
+    {
+      text: "ほんのり透け感のある極薄白リブキャミソール（ストラップが片肩少しずり落ちている）＋白のミニルームショートパンツ",
+      places: ["寝室", "リビング", "姿見越し"],
+      wet: false
+    }
+  ],
   groceryProps: [
     "小さなエコバッグ（一人分のカットフルーツとサラダ、お惣菜1品など少量）",
     "コンパクトな保冷エコバッグ（一人暮らし用の少量の食材とヨーグルト）",
     "デパ地下の小さな紙袋（一人分のデリとプチスイーツ）",
     "ベーカリーの小さな紙袋（明日の朝用のパン2個ほど）"
   ],
-  elegantPajamaColors: ["深いネイビー", "純白（ホワイト）", "シャンパンベージュ", "ワインレッド", "ダスティピンク", "上品なブラック", "淡いアイスブルー"],
+  elegantPajamaColors: ["深いネイビー", "純白（ホワイト）", "シャンパンベージュ", "深みワインレッド", "ダスティピンク", "上品なブラック", "チャコールグレー"],
   elegantPajamaStyles: [
     "胸元と袖口に繊細な花柄レースをあしらった艶のあるサテンキャミソール＆ローブ（ガウン）のセット",
+    "胸元ボタンを1〜2個開けて鎖骨を見せる艶サテン×繊細レースの開襟シャツパジャマ",
+    "ベロア素材に繊細なレースをあしらった大人っぽいキャミソール＆ガウンセット",
+    "細リブ素材のカップインルームワンピースにショート丈カーディガンを肩落としで羽織る",
     "繊細なレースのトリミングが入った艶のあるサテンキャミソールに薄手の同系色カーディガンを羽織る",
     "透け感のある総花柄レースの長袖ネグリジェ（ルームワンピース）",
-    "胸元にレースが入ったシフォン＆サテンのエレガントなスリップワンピース",
     "白の薄手ジップアップパーカー（ファスナーを少し下げて内側の白レースインナーが覗く）",
     "白のリブタンクトップ＋ベージュのざっくりニットカーディガンを肩落としで着用"
   ],
@@ -545,11 +940,11 @@ const DB = {
         "黒のすっきりしたショートダウン"
       ],
       commuteInner: [
+        "深みブラウンのリブニット（ベロアリボン付き）",
+        "ほんのり煌めくオフホワイトのスパンコール入りシャギーニット",
+        "金ボタンがクラシカルなアイボリーのニットカーディガン",
+        "淡いピンクのふわふわシャギーニット",
         "ブラウンのリブニット",
-        "白のハイネックリブニット",
-        "淡いピンクのアンゴラ混ふわふわニット",
-        "アイボリーのパールボタン付きニットカーディガン",
-        "ライトグレーのVネックリブニット",
         "ベージュのタイトめニットワンピース（着替えやすい）"
       ],
       commuteBottom: [
@@ -570,19 +965,19 @@ const DB = {
         "黒のすっきりしたショートコート"
       ],
       holidaySexyInner: [
+        "光沢のある黒ベロア×繊細レースのオフショルトップス（鎖骨きれい見え）",
+        "深みレッド（ボルドー）のタイトなVネックカシュクールリブニット",
+        "白のシアー長袖ニットの上に繊細な黒レースキャミソールを重ねたレイヤード",
         "肩と鎖骨がきれいに見えるアイボリーのオフショルダータイトニット",
-        "深いVネックでデコルテが映える黒のフィット系リブニット",
         "体のラインが美しく出るベージュのオフショル・ニットミニワンピース",
-        "胸元が上品に開いたダスティピンクのカシュクールリブニット",
-        "ほんのり透け感のある黒シアーリブトップス（インナーのキャミがうっすら透ける）",
-        "深いUネックのふわふわアンゴラ混白ニット（片肩少し落とし気味）",
-        "デコルテが大きく開いたボルドーのタイト長袖リブトップス"
+        "ほんのり透け感のある黒シアーリブトップス（インナーキャミがうっすら透ける）",
+        "深いUネックのふわふわシャギー白ニット（片肩少し落とし気味）"
       ],
       holidaySexyBottom: [
         "黒のタイトミニスカート＋透け感のある薄手黒タイツ",
+        "トレンドのニットショートパンツ＋透け黒タイツ（ロングブーツ風）",
         "ハイウエストの細身スキニーデニム（細ベルト）",
-        "スリット入りのマーメイドロングスカート",
-        "レザー風の黒ミニスカート＋透け黒タイツ"
+        "スリット入りのマーメイドロングスカート"
       ],
       acc: [
         "黒のブランドショルダーバッグ",
@@ -626,8 +1021,7 @@ const DB = {
         "肩が大きく開いた白のオフショルダーコットンブラウス",
         "体のラインが出るベージュのノースリーブリブニットワンピース",
         "胸元が少し開いた黒のフィット系スクエアネック半袖リブトップス",
-        "透け感のあるシアーシャツを羽織った淡いピンクのサテンキャミソール",
-        "鎖骨が際立つくすみブルーのホルターネック風タイトトップス"
+        "透け感のあるシアーシャツを羽織った淡いピンクのサテンキャミソール"
       ],
       holidaySexyBottom: [
         "ハイウエストの細身ライトブルーデニム（ピンクベージュの細ベルト）",
@@ -668,34 +1062,274 @@ const DB = {
     holiday_home: [
       "休診日はおうちでストレッチしてゴロゴロ。ベッドとソファ往復してるだけ最高🛏️",
       "お風呂上がりにしっかりスキンケア。明日も午前診から頑張ろう〜🌙"
+    ],
+    r18_edge: [
+      "お風呂上がりまだほてってる…今日はちょっと大胆すぎたかも、消す前に見てね🤫🌙",
+      "昼間のクリニック受付の私とは別人すぎる夜モード。こういうの好き？🍷",
+      "寝る前のひとり時間…誰にも見せない部屋着だけど今夜だけこっそり🫧",
+      "ちょっと攻めすぎたかな？暖色の灯りだけだと落ち着くね…おやすみなさい💋"
     ]
   }
 };
 
 let currentSeason = "aw";
 let currentMode = "clinic_onoff";
+let currentClosetFilter = "all";
+let pendingImageData = "";
+let myClosetCache = [];
+let idb = null;
 
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function placeBy(shortName) { return DB.places.find(p => p.short === shortName); }
 function placeByLabel(label) { return DB.places.find(p => p.label === label) || DB.places[0]; }
 
+/* ===== IndexedDB（無料・大容量の着画クローゼット） ===== */
+function openClosetDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open("DailySelfieClosetDB", 1);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains("items")) {
+        db.createObjectStore("items", { keyPath: "id" });
+      }
+    };
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror = e => reject(e.target.error);
+  });
+}
+
+function dbGetAll() {
+  return new Promise((resolve, reject) => {
+    const tx = idb.transaction("items", "readonly");
+    const req = tx.objectStore("items").getAll();
+    req.onsuccess = () => resolve(req.result.sort((a, b) => b.id - a.id));
+    req.onerror = e => reject(e.target.error);
+  });
+}
+
+function dbPut(item) {
+  return new Promise((resolve, reject) => {
+    const tx = idb.transaction("items", "readwrite");
+    tx.objectStore("items").put(item);
+    tx.oncomplete = () => resolve();
+    tx.onerror = e => reject(e.target.error);
+  });
+}
+
+function dbDelete(id) {
+  return new Promise((resolve, reject) => {
+    const tx = idb.transaction("items", "readwrite");
+    tx.objectStore("items").delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = e => reject(e.target.error);
+  });
+}
+
+async function initClosetStorage() {
+  try {
+    idb = await openClosetDB();
+    myClosetCache = await dbGetAll();
+    // 旧localStorageからの自動移行
+    const legacy = JSON.parse(localStorage.getItem("ds_my_closet_v1") || "[]");
+    if (legacy.length > 0 && myClosetCache.length === 0) {
+      for (const item of legacy) {
+        await dbPut(item);
+      }
+      myClosetCache = await dbGetAll();
+      localStorage.removeItem("ds_my_closet_v1");
+    }
+  } catch (err) {
+    console.warn("IndexedDB fallback", err);
+    myClosetCache = JSON.parse(localStorage.getItem("ds_my_closet_v1") || "[]");
+  }
+  renderCloset();
+}
+
+function shouldUseMyCloset() {
+  return document.getElementById("useMyClosetCheck").checked;
+}
+function saveClosetToggle() {
+  localStorage.setItem("ds_use_my_closet", shouldUseMyCloset() ? "1" : "0");
+}
+function pickMyClosetItem(cat) {
+  if (!shouldUseMyCloset()) return null;
+  const items = myClosetCache.filter(i => i.cat === cat);
+  if (items.length === 0) return null;
+  return Math.random() < 0.5 ? pick(items).text : null;
+}
+
+function copyExtractHelper() {
+  navigator.clipboard.writeText(EXTRACT_HELPER_PROMPT).then(() => {
+    showToast("Gemini用プロンプトをコピーしました！");
+  });
+}
+
+function handleClosetImage(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      // 着画が見やすい480px幅に軽量圧縮（1枚30〜50KB程度なので数百枚保存OK）
+      const maxW = 480;
+      const scale = Math.min(1, maxW / img.width);
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      pendingImageData = canvas.toDataURL("image/jpeg", 0.8);
+      document.getElementById("thumbPreview").innerHTML = `<img src="${pendingImageData}" alt="preview">`;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function addClosetItem() {
+  const cat = document.getElementById("closetCat").value;
+  const text = document.getElementById("closetText").value.trim();
+  if (!text) {
+    showToast("服装プロンプトを入力してください");
+    return;
+  }
+  const item = { id: Date.now(), cat, text, img: pendingImageData };
+  if (idb) {
+    await dbPut(item);
+    myClosetCache = await dbGetAll();
+  } else {
+    myClosetCache.unshift(item);
+    localStorage.setItem("ds_my_closet_v1", JSON.stringify(myClosetCache));
+  }
+
+  document.getElementById("closetText").value = "";
+  document.getElementById("closetFile").value = "";
+  pendingImageData = "";
+  document.getElementById("thumbPreview").innerHTML = "着画・服<br>画像なし";
+  renderCloset();
+  showToast("クローゼットに保存しました！");
+}
+
+function filterCloset(cat, btn) {
+  currentClosetFilter = cat;
+  document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+  btn.classList.add("active");
+  renderCloset();
+}
+
+function renderCloset() {
+  document.getElementById("closetCount").textContent = `${myClosetCache.length}着`;
+  const list = currentClosetFilter === "all" ? myClosetCache : myClosetCache.filter(i => i.cat === currentClosetFilter);
+  const el = document.getElementById("closetList");
+
+  if (list.length === 0) {
+    el.innerHTML = `<div style="font-size:0.78rem; color:var(--sub); padding:12px 0; text-align:center;">まだ登録がありません。主人公の着画や服スクショを保存すると、写真を見て思い出しながら1タップで着せ替えできます。</div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(item => `
+    <div class="closet-item">
+      <div class="closet-img-wrap" onclick="openModal(${item.id})">
+        ${item.img ? `<img src="${item.img}" alt=""><span class="zoom-hint">拡大</span>` : "👗"}
+      </div>
+      <div class="closet-body">
+        <div class="closet-meta">
+          <span class="cat-tag ${item.cat === 'r18' ? 'r18-tag' : ''}">${CAT_LABELS[item.cat] || item.cat}</span>
+        </div>
+        <div class="closet-text">${escapeHtml(item.text)}</div>
+        <div class="closet-actions">
+          <button class="btn-wear" onclick="wearItem(${item.id}, 1)">1枚目に着せる</button>
+          <button class="btn-wear" onclick="wearItem(${item.id}, 2)">2枚目に着せる</button>
+          <button class="btn-del" onclick="deleteClosetItem(${item.id})">削除</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function openModal(id) {
+  const item = myClosetCache.find(i => i.id === id);
+  if (!item) return;
+  const imgEl = document.getElementById("modalImg");
+  if (item.img) {
+    imgEl.src = item.img;
+    imgEl.style.display = "block";
+  } else {
+    imgEl.style.display = "none";
+  }
+  document.getElementById("modalTag").innerHTML = `<span class="cat-tag ${item.cat === 'r18' ? 'r18-tag' : ''}">${CAT_LABELS[item.cat] || item.cat}</span>`;
+  document.getElementById("modalText").textContent = item.text;
+  document.getElementById("modalWear1").onclick = () => { wearItem(id, 1); closeModal(); };
+  document.getElementById("modalWear2").onclick = () => { wearItem(id, 2); closeModal(); };
+  document.getElementById("photoModal").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("photoModal").classList.remove("open");
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+}
+
+function wearItem(id, slotNum) {
+  const item = myClosetCache.find(i => i.id === id);
+  if (!item) return;
+  const p = placeByLabel(document.getElementById(`place${slotNum}`).value);
+  const needsNoOuter = p.indoor && p.type === "out" && !item.text.includes("アウター");
+  document.getElementById(`cloth${slotNum}`).value = needsNoOuter
+    ? `アウター（コート・ダウン）は脱いで、${item.text}`
+    : item.text;
+  syncAll();
+  showToast(`${slotNum}枚目に着せました！`);
+}
+
+async function deleteClosetItem(id) {
+  if (idb) {
+    await dbDelete(id);
+    myClosetCache = await dbGetAll();
+  } else {
+    myClosetCache = myClosetCache.filter(i => i.id !== id);
+    localStorage.setItem("ds_my_closet_v1", JSON.stringify(myClosetCache));
+  }
+  renderCloset();
+  showToast("削除しました");
+}
+
+/* ===== コーデ生成ロジック ===== */
 function buildElegantPajama() {
+  const custom = pickMyClosetItem("room");
+  if (custom) return custom;
   const style = pick(DB.elegantPajamaStyles);
-  if (style.startsWith("白の") || style.startsWith("透け感")) return style;
+  if (style.startsWith("白の") || style.startsWith("透け感") || style.startsWith("細リブ")) return style;
   return `${pick(DB.elegantPajamaColors)}の${style}`;
 }
 
+function buildR18Pack() {
+  const custom = pickMyClosetItem("r18");
+  if (custom) {
+    return { text: custom, places: ["寝室", "リビング", "脱衣所"], wet: false };
+  }
+  return pick(DB.r18Outfits);
+}
+
 function buildHolidayCore() {
+  const custom = pickMyClosetItem("holiday");
   const c = DB.closet[currentSeason];
+  if (custom) return { custom: true, text: custom, outer: pick(c.holidayOuter) };
   const inner = pick(c.holidaySexyInner);
   const isOnePiece = inner.includes("ワンピース");
   const bottom = isOnePiece ? "" : `、${pick(c.holidaySexyBottom)}`;
   const acc = pick(c.acc);
-  return { inner, bottom, acc, outer: pick(c.holidayOuter) };
+  return { custom: false, inner, bottom, acc, outer: pick(c.holidayOuter) };
 }
 
 function formatHoliday(core, indoor, addGrocery = false) {
   const groceryText = addGrocery ? `、${pick(DB.groceryProps)}` : "";
+  if (core.custom) {
+    return indoor ? `アウター（コート・ダウン）は脱いで、${core.text}${groceryText}` : `${core.text}${groceryText}`;
+  }
   if (indoor || core.outer === "アウターなし") {
     const prefix = indoor ? "アウター（コート・ダウン）は脱いで、" : "";
     return `${prefix}${core.inner}${core.bottom}、${core.acc}${groceryText}`;
@@ -704,13 +1338,17 @@ function formatHoliday(core, indoor, addGrocery = false) {
 }
 
 function buildCommute(indoor = false, forceInner = null, addGrocery = false) {
+  const custom = !forceInner ? pickMyClosetItem("commute") : null;
+  const groceryText = addGrocery ? `、${pick(DB.groceryProps)}` : "";
+  if (custom) {
+    return indoor ? `アウター（コート・ダウン）は脱いで、${custom}${groceryText}` : `${custom}${groceryText}`;
+  }
   const c = DB.closet[currentSeason];
   const outer = pick(c.commuteOuter);
   const inner = forceInner || pick(c.commuteInner);
   const isOnePiece = inner.includes("ワンピース");
   const bottom = isOnePiece ? "" : `、${pick(c.commuteBottom)}`;
   const acc = pick(c.acc);
-  const groceryText = addGrocery ? `、${pick(DB.groceryProps)}` : "";
   if (indoor || outer === "アウターなし") {
     const prefix = indoor ? "アウター（コート・ダウン）は脱いで、" : "";
     return `${prefix}${inner}${bottom}、${acc}${groceryText}`;
@@ -718,8 +1356,17 @@ function buildCommute(indoor = false, forceInner = null, addGrocery = false) {
   return `${outer}に${inner}${bottom}、${acc}${groceryText}`;
 }
 
-function init() {
+function buildSwimOrGym() {
+  const custom = pickMyClosetItem("gym");
+  return custom || pick(DB.swimWear);
+}
+
+/* ===== 初期化・UI制御 ===== */
+async function init() {
   document.getElementById("basePrompt").value = localStorage.getItem("ds_base_prompt_v5") || DEFAULT_BASE_PROMPT;
+  const savedToggle = localStorage.getItem("ds_use_my_closet");
+  if (savedToggle !== null) document.getElementById("useMyClosetCheck").checked = savedToggle === "1";
+
   [1, 2].forEach(n => {
     fill(`time${n}`, DB.times);
     fill(`place${n}`, DB.places.map(p => p.label));
@@ -728,6 +1375,7 @@ function init() {
     fill(`bg${n}`, DB.bgs);
     fill(`hair${n}`, DB.allHairs);
   });
+  await initClosetStorage();
   renderHistory();
   runCurrentMode();
 }
@@ -753,7 +1401,7 @@ function switchTab(name, btn) {
 
 function switchTabByIndex(idx) {
   const btns = document.querySelectorAll(".tab-btn");
-  const names = ["home", "slot1", "slot2", "output"];
+  const names = ["home", "closet", "slot1", "slot2", "output"];
   switchTab(names[idx], btns[idx]);
 }
 
@@ -778,6 +1426,7 @@ function setSlot(n, d) {
 function runCurrentMode() {
   const c = DB.closet[currentSeason];
   if (currentMode === "clinic_onoff") {
+    const customCommute = pickMyClosetItem("commute");
     const sharedInner = pick(c.commuteInner);
     setSlot(1, {
       time: "朝",
@@ -785,12 +1434,12 @@ function runCurrentMode() {
       style: DB.styles[0],
       angle: "顔アップ",
       bg: "極力背景は映さない",
-      cloth: buildCommute(false, sharedInner, false),
+      cloth: customCommute || buildCommute(false, sharedInner, false),
       hair: pick(DB.hairs.work),
       pose: pick(DB.poses.normal)
     });
     const room = pick([placeBy("リビング"), placeBy("寝室")]);
-    const keepInner = Math.random() < 0.35;
+    const keepInner = !customCommute && Math.random() < 0.35;
     setSlot(2, {
       time: "夜",
       place: room.label,
@@ -847,11 +1496,41 @@ function runCurrentMode() {
       time: "夜",
       place: placeBy("寝室").label,
       style: DB.styles[0],
-      angle: useCloseUp ? "目元を画角外に切った口元〜デコルテの超アップ" : "バストアップ",
+      angle: useCloseUp ? "目元を画角外に切った口元〜デコルテ・谷間の超アップ" : "バストアップ",
       bg: "極力背景は映さない",
       cloth: samePajama,
       hair,
       pose: useCloseUp ? "ベッドにうつ伏せになり、少し唇を尖らせた無防備な表情" : "ベッドにうつ伏せになり頬杖をついた甘いカメラ目線"
+    });
+  } else if (currentMode === "r18_edge") {
+    // 🔞 18禁すれすれ（SNS投稿＆生成OKの攻めペア）
+    const pack = buildR18Pack();
+    const p1Obj = placeBy(pick(pack.places));
+    const hair = pack.wet ? DB.hairs.r18[0] : pick(DB.hairs.r18);
+    const isMirror1 = Boolean(p1Obj.mirror);
+    setSlot(1, {
+      time: "夜",
+      place: p1Obj.label,
+      style: isMirror1 ? DB.styles[1] : DB.styles[0],
+      angle: isMirror1 ? "ウエストアップ" : pick(["ウエストアップ", "やや上方からの見下ろしアングル（デコルテと上目遣い強調）"]),
+      bg: "部屋の雰囲気が少しわかる程度",
+      cloth: pack.text,
+      hair,
+      pose: pick(DB.poses.r18)
+    });
+    const p2Obj = p1Obj.short === "脱衣所" ? placeBy("寝室") : placeBy(pick(["寝室", "リビング"]));
+    const usePartsCrop = Math.random() < 0.55;
+    setSlot(2, {
+      time: "夜",
+      place: p2Obj.label,
+      style: DB.styles[0],
+      angle: usePartsCrop ? "目元を画角外に切った口元〜デコルテ・谷間の超アップ" : "やや上方からの見下ろしアングル（デコルテと上目遣い強調）",
+      bg: "極力背景は映さない",
+      cloth: pack.text,
+      hair,
+      pose: usePartsCrop
+        ? "ベッドにうつ伏せになり、胸元のラインが強調される角度で少し唇を半開きにした無防備な表情"
+        : pick(DB.poses.r18)
     });
   } else if (currentMode === "gym_swim") {
     const useHomeYoga = Math.random() < 0.5;
@@ -861,7 +1540,7 @@ function runCurrentMode() {
       style: DB.styles[1],
       angle: "ウエストアップ",
       bg: "部屋の雰囲気が少しわかる程度",
-      cloth: pick(DB.swimWear),
+      cloth: buildSwimOrGym(),
       hair: DB.hairs.wet[0],
       pose: pick(DB.poses.gym)
     });
@@ -932,16 +1611,26 @@ function runCurrentMode() {
 function rerollClothesOnly() {
   const p1 = placeByLabel(document.getElementById("place1").value);
   const p2 = placeByLabel(document.getElementById("place2").value);
-  if (currentMode === "night_elegant") {
+  if (currentMode === "r18_edge") {
+    const pack = buildR18Pack();
+    document.getElementById("cloth1").value = pack.text;
+    document.getElementById("cloth2").value = pack.text;
+    document.getElementById("hair1").value = pack.wet ? DB.hairs.r18[0] : pick(DB.hairs.r18);
+    document.getElementById("hair2").value = document.getElementById("hair1").value;
+  } else if (currentMode === "night_elegant") {
     const p = buildElegantPajama();
     document.getElementById("cloth1").value = p;
     document.getElementById("cloth2").value = p;
+    document.getElementById("hair1").value = pick(DB.hairs.relax);
+    document.getElementById("hair2").value = document.getElementById("hair1").value;
   } else if (currentMode === "holiday_out") {
     const core = buildHolidayCore();
     document.getElementById("cloth1").value = formatHoliday(core, p1.indoor, Boolean(p1.grocery));
     document.getElementById("cloth2").value = formatHoliday(core, p2.indoor, Boolean(p2.grocery));
+    document.getElementById("hair1").value = pick(DB.hairs.holiday);
+    document.getElementById("hair2").value = document.getElementById("hair1").value;
   } else if (currentMode === "gym_swim") {
-    document.getElementById("cloth1").value = pick(DB.swimWear);
+    document.getElementById("cloth1").value = buildSwimOrGym();
     document.getElementById("cloth2").value = pick([pick(DB.homeYogaWear), buildElegantPajama()]);
   } else if (currentMode === "clinic_break") {
     const c = DB.closet[currentSeason];
@@ -950,19 +1639,36 @@ function rerollClothesOnly() {
   } else {
     [1, 2].forEach((n, idx) => {
       const p = idx === 0 ? p1 : p2;
-      if (p.type === "gym") document.getElementById(`cloth${n}`).value = pick(DB.swimWear);
+      if (p.type === "gym") document.getElementById(`cloth${n}`).value = buildSwimOrGym();
       else if (p.short === "玄関") document.getElementById(`cloth${n}`).value = buildCommute(false);
       else if (p.type === "home") document.getElementById(`cloth${n}`).value = pick([buildElegantPajama(), pick(DB.homeYogaWear)]);
       else document.getElementById(`cloth${n}`).value = formatHoliday(buildHolidayCore(), p.indoor, Boolean(p.grocery));
     });
+    document.getElementById("hair1").value = pick(DB.allHairs);
+    document.getElementById("hair2").value = pick(DB.allHairs);
   }
-  document.getElementById("hair1").value = pick(DB.allHairs);
-  document.getElementById("hair2").value = pick(DB.allHairs);
   syncAll();
   showToast("服装と髪型を変更しました");
 }
 
 function rerollSingle(n) {
+  if (currentMode === "r18_edge") {
+    const pack = buildR18Pack();
+    const p = placeBy(pick(pack.places));
+    setSlot(n, {
+      time: "夜",
+      place: p.label,
+      style: p.mirror ? DB.styles[1] : DB.styles[0],
+      angle: p.mirror ? "ウエストアップ" : pick(["ウエストアップ", "やや上方からの見下ろしアングル（デコルテと上目遣い強調）", "目元を画角外に切った口元〜デコルテ・谷間の超アップ"]),
+      bg: "部屋の雰囲気が少しわかる程度",
+      cloth: pack.text,
+      hair: pack.wet ? DB.hairs.r18[0] : pick(DB.hairs.r18),
+      pose: pick(DB.poses.r18)
+    });
+    syncAll();
+    return;
+  }
+
   const p = pick(DB.places);
   const c = DB.closet[currentSeason];
   let cloth = "";
@@ -970,7 +1676,7 @@ function rerollSingle(n) {
   let hair = pick(DB.allHairs);
 
   if (p.type === "gym") {
-    cloth = pick(DB.swimWear);
+    cloth = buildSwimOrGym();
     pose = pick(DB.poses.gym);
     hair = DB.hairs.wet[0];
   } else if (p.short === "玄関") {
@@ -1041,6 +1747,10 @@ function getSlotText(n) {
 }
 
 function syncAll() {
+  const isR18 = currentMode === "r18_edge";
+  document.getElementById("sumBox1").classList.toggle("r18-accent", isR18);
+  document.getElementById("sumBox2").classList.toggle("r18-accent", isR18);
+
   [1, 2].forEach(n => {
     const t = document.getElementById(`time${n}`).value;
     const p = document.getElementById(`place${n}`).value.split("（")[0];
@@ -1050,7 +1760,8 @@ function syncAll() {
     document.getElementById(`sum${n}`).textContent = `【${t}・${p}】${lightTag}${c} / ${h}`;
   });
   const base = document.getElementById("basePrompt").value.trim();
-  document.getElementById("promptOutput").textContent = `${base}\n\n${getSlotText(1)}\n\n${getSlotText(2)}`;
+  const extra = isR18 ? `\n\n${R18_GUARDRAIL_LINE}` : "";
+  document.getElementById("promptOutput").textContent = `${base}${extra}\n\n${getSlotText(1)}\n\n${getSlotText(2)}`;
 }
 
 function saveBase() {
@@ -1068,10 +1779,11 @@ function copyAll() {
 function saveHistory() {
   const p1 = document.getElementById("place1").value.split("（")[0];
   const p2 = document.getElementById("place2").value.split("（")[0];
+  const tag = currentMode === "r18_edge" ? "🔞" : "";
   const now = new Date();
   const d = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
   const list = JSON.parse(localStorage.getItem("ds_history") || "[]");
-  list.unshift({ d, s: `${p1} × ${p2}` });
+  list.unshift({ d, s: `${tag}${p1} × ${p2}` });
   localStorage.setItem("ds_history", JSON.stringify(list.slice(0, 12)));
   renderHistory();
 }
@@ -1091,7 +1803,7 @@ function showToast(m) {
   const t = document.getElementById("toast");
   t.textContent = m;
   t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 1800);
+  setTimeout(() => t.classList.remove("show"), 2000);
 }
 
 init();
