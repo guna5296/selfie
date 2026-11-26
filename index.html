@@ -39,10 +39,7 @@
     align-items: center;
     padding: 10px 14px 6px;
   }
-  .header-row h1 {
-    font-size: 0.94rem;
-    font-weight: 700;
-  }
+  .header-row h1 { font-size: 0.94rem; font-weight: 700; }
   .season-toggle {
     display: flex;
     background: #eee9e4;
@@ -143,6 +140,54 @@
     font-weight: 700;
   }
 
+  /* 背景リファレンス固定＆添付ガイド */
+  .ref-box {
+    background: #f3f7f4;
+    border: 1px solid #d5e4da;
+    border-radius: 11px;
+    padding: 9px 10px;
+    margin-top: 10px;
+  }
+  .ref-box-title {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #2f5c47;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ref-pills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  .ref-pill {
+    border: 1px solid #c9dcd0;
+    background: #fff;
+    border-radius: 8px;
+    padding: 6px 4px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #4f6b5d;
+  }
+  .ref-pill.active {
+    background: #3d7a5e;
+    color: #fff;
+    border-color: #3d7a5e;
+  }
+  .attach-guide {
+    margin-top: 8px;
+    background: #ffffff;
+    border: 1px dashed #8eb8a3;
+    border-radius: 9px;
+    padding: 8px 10px;
+    font-size: 0.74rem;
+    color: #234937;
+    line-height: 1.5;
+  }
+  .attach-guide strong { display: block; margin-bottom: 2px; font-size: 0.75rem; }
+
   .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -186,7 +231,7 @@
   .option-toggles {
     display: grid;
     gap: 7px;
-    margin-top: 10px;
+    margin-top: 8px;
   }
   .opt-bar {
     padding: 8px 10px;
@@ -229,14 +274,11 @@
     margin-bottom: 3px;
     display: flex;
     justify-content: space-between;
+    gap: 6px;
   }
   .summary-box.r18-accent h3 { color: var(--r18); }
-  .summary-box p {
-    font-size: 0.78rem;
-    line-height: 1.45;
-  }
+  .summary-box p { font-size: 0.78rem; line-height: 1.45; }
 
-  /* キャプションカード */
   .caption-text {
     background: #fdf9f7;
     border: 1px solid #efe3dc;
@@ -292,10 +334,7 @@
     padding: 4px 8px;
     font-size: 0.68rem;
   }
-  .mini-btn.star-btn {
-    background: #fdf5df;
-    color: #9e7011;
-  }
+  .mini-btn.star-btn { background: #fdf5df; color: #9e7011; }
   .btn-full {
     width: 100%;
     border: none;
@@ -329,256 +368,96 @@
   }
 
   /* クローゼット */
-  .upload-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
+  .upload-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .thumb-preview {
-    width: 66px;
-    height: 88px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: #f2efeb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.66rem;
-    color: var(--sub);
-    overflow: hidden;
-    flex-shrink: 0;
-    text-align: center;
+    width: 66px; height: 88px; border-radius: 8px; border: 1px solid var(--border);
+    background: #f2efeb; display: flex; align-items: center; justify-content: center;
+    font-size: 0.66rem; color: var(--sub); overflow: hidden; flex-shrink: 0; text-align: center;
   }
   .thumb-preview img { width: 100%; height: 100%; object-fit: cover; }
   .file-label {
-    flex: 1;
-    display: block;
-    text-align: center;
-    padding: 12px 10px;
-    background: #eee9e4;
-    border-radius: 10px;
-    font-size: 0.79rem;
-    font-weight: 700;
-    color: var(--text);
+    flex: 1; display: block; text-align: center; padding: 12px 10px;
+    background: #eee9e4; border-radius: 10px; font-size: 0.79rem; font-weight: 700; color: var(--text);
   }
-  .filter-pills {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 6px;
-    margin-bottom: 8px;
-  }
+  .filter-pills { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 8px; }
   .pill {
-    border: 1px solid var(--border);
-    background: #fff;
-    border-radius: 99px;
-    padding: 5px 11px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--sub);
-    white-space: nowrap;
+    border: 1px solid var(--border); background: #fff; border-radius: 99px;
+    padding: 5px 11px; font-size: 0.72rem; font-weight: 700; color: var(--sub); white-space: nowrap;
   }
-  .pill.active {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-  }
-  .closet-item {
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .closet-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .closet-item:last-child { border-bottom: none; }
   .closet-img-wrap {
-    width: 68px;
-    height: 92px;
-    border-radius: 8px;
-    background: #f0ece7;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    overflow: hidden;
-    position: relative;
+    width: 68px; height: 92px; border-radius: 8px; background: #f0ece7; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    overflow: hidden; position: relative;
   }
   .closet-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .zoom-hint {
-    position: absolute;
-    bottom: 3px;
-    right: 3px;
-    background: rgba(0,0,0,0.55);
-    color: #fff;
-    font-size: 0.58rem;
-    padding: 1px 4px;
-    border-radius: 4px;
+    position: absolute; bottom: 3px; right: 3px; background: rgba(0,0,0,0.55);
+    color: #fff; font-size: 0.58rem; padding: 1px 4px; border-radius: 4px;
   }
   .closet-body { flex: 1; min-width: 0; }
-  .closet-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-  }
+  .closet-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
   .cat-tag {
-    font-size: 0.66rem;
-    font-weight: 700;
-    background: var(--accent-soft);
-    color: var(--accent);
-    padding: 2px 7px;
-    border-radius: 99px;
+    font-size: 0.66rem; font-weight: 700; background: var(--accent-soft);
+    color: var(--accent); padding: 2px 7px; border-radius: 99px;
   }
   .cat-tag.r18-tag { background: var(--r18-soft); color: var(--r18); }
-  .closet-text {
-    font-size: 0.78rem;
-    line-height: 1.4;
-    margin-bottom: 7px;
-    word-break: break-word;
-  }
+  .closet-text { font-size: 0.78rem; line-height: 1.4; margin-bottom: 7px; word-break: break-word; }
   .closet-actions { display: flex; gap: 6px; }
-  .closet-actions button {
-    border: none;
-    border-radius: 7px;
-    padding: 6px 9px;
-    font-size: 0.72rem;
-    font-weight: 700;
-  }
+  .closet-actions button { border: none; border-radius: 7px; padding: 6px 9px; font-size: 0.72rem; font-weight: 700; }
   .btn-wear { background: #eee9e4; color: var(--text); }
   .btn-del { background: none; color: #a89f99; margin-left: auto; }
 
-  .toggle-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
-    color: var(--sub);
-    margin-top: 8px;
-  }
+  .toggle-row { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--sub); margin-top: 8px; }
   .toggle-row input { width: 18px; height: 18px; accent-color: var(--accent); }
 
   /* お気に入り・履歴 */
-  .fav-item {
-    padding: 9px 0;
-    border-bottom: 1px dashed var(--border);
-  }
+  .fav-item { padding: 9px 0; border-bottom: 1px dashed var(--border); }
   .fav-item:last-child { border-bottom: none; }
-  .fav-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.78rem;
-    font-weight: 700;
-    margin-bottom: 3px;
-  }
-  .fav-sub {
-    font-size: 0.72rem;
-    color: var(--sub);
-    margin-bottom: 6px;
-  }
+  .fav-head { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 700; margin-bottom: 3px; }
+  .fav-sub { font-size: 0.72rem; color: var(--sub); margin-bottom: 6px; }
   .fav-actions { display: flex; gap: 6px; }
 
   .history-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem;
-    padding: 7px 0;
-    border-bottom: 1px dashed var(--border);
-    color: var(--sub);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; padding: 7px 0; border-bottom: 1px dashed var(--border); color: var(--sub);
   }
-  .tier-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 99px;
-    margin-right: 5px;
-  }
+  .tier-dot { display: inline-block; width: 8px; height: 8px; border-radius: 99px; margin-right: 5px; }
 
   /* 拡大モーダル */
   .modal-bg {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.82);
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 100;
+    display: none; align-items: center; justify-content: center; padding: 16px;
   }
   .modal-bg.open { display: flex; }
-  .modal-card {
-    background: #fff;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 400px;
-    max-height: 88vh;
-    overflow-y: auto;
-    padding: 14px;
-  }
-  .modal-img {
-    width: 100%;
-    max-height: 55vh;
-    object-fit: contain;
-    border-radius: 10px;
-    background: #1a1a1a;
-    margin-bottom: 10px;
-  }
+  .modal-card { background: #fff; border-radius: 16px; width: 100%; max-width: 400px; max-height: 88vh; overflow-y: auto; padding: 14px; }
+  .modal-img { width: 100%; max-height: 55vh; object-fit: contain; border-radius: 10px; background: #1a1a1a; margin-bottom: 10px; }
   .modal-text { font-size: 0.82rem; line-height: 1.45; margin-bottom: 12px; }
   .modal-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
 
   .output-pre {
-    background: #faf9f7;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 0.76rem;
-    white-space: pre-wrap;
-    line-height: 1.45;
-    max-height: 360px;
-    overflow-y: auto;
+    background: #faf9f7; border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px; font-size: 0.76rem; white-space: pre-wrap; line-height: 1.45; max-height: 360px; overflow-y: auto;
   }
 
   .bottom-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
     border-top: 1px solid var(--border);
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 8px;
-    z-index: 30;
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 8px; z-index: 30;
   }
-  .action-btn {
-    border: none;
-    border-radius: 12px;
-    padding: 13px 10px;
-    font-size: 0.88rem;
-    font-weight: 700;
-  }
+  .action-btn { border: none; border-radius: 12px; padding: 13px 10px; font-size: 0.88rem; font-weight: 700; }
   .btn-roll { background: #eee9e4; color: var(--text); }
   .btn-copy { background: var(--accent); color: #fff; }
 
   .toast {
-    position: fixed;
-    top: 64px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(42,40,38,0.92);
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 99px;
-    font-size: 0.8rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    z-index: 120;
-    white-space: nowrap;
+    position: fixed; top: 64px; left: 50%; transform: translateX(-50%);
+    background: rgba(42,40,38,0.92); color: #fff; padding: 8px 18px;
+    border-radius: 99px; font-size: 0.8rem; opacity: 0; pointer-events: none;
+    transition: opacity 0.2s; z-index: 120; white-space: nowrap;
   }
   .toast.show { opacity: 1; }
 </style>
@@ -605,7 +484,6 @@
 <div class="container">
   <!-- タブ1：ホーム -->
   <div id="tab-home" class="panel active">
-    <!-- 投稿バランスメーター -->
     <div class="card">
       <div class="card-title">
         <span>📊 直近7日間の投稿バランス</span>
@@ -620,7 +498,6 @@
       <div class="meter-tip" id="meterTip">黄金比目安：清楚7〜8割：すれすれ2〜3割</div>
     </div>
 
-    <!-- パターン選択 -->
     <div class="card">
       <div class="card-title"><span>1日のパターンを選ぶ</span></div>
       <div class="story-grid">
@@ -652,6 +529,19 @@
           🔞 18禁すれすれ（SNS投稿ギリギリ・生成OKライン）
           <span>湯上がりタオル・透け総レース・彼シャツ・厚手羽織り肩落とし</span>
         </button>
+      </div>
+
+      <!-- 🏠 自宅背景リファレンス固定設定 -->
+      <div class="ref-box">
+        <div class="ref-box-title">
+          <span>🏠 自宅背景の完全固定（間取りロック・画角のみ変化）</span>
+        </div>
+        <div class="ref-pills">
+          <button class="ref-pill active" id="ref-single" onclick="setRefMode('single')">単体部屋添付(推奨)</button>
+          <button class="ref-pill" id="ref-grid" onclick="setRefMode('grid')">4分割シート添付</button>
+          <button class="ref-pill" id="ref-none" onclick="setRefMode('none')">画像なし(文字のみ)</button>
+        </div>
+        <div class="attach-guide" id="attachGuideHome"></div>
       </div>
 
       <div class="option-toggles">
@@ -702,18 +592,14 @@
   <!-- タブ2：着画クローゼット -->
   <div id="tab-closet" class="panel">
     <div class="card">
-      <div class="card-title">
-        <span>👗 主人公の着画・服を登録（無料・大容量）</span>
-      </div>
+      <div class="card-title"><span>👗 主人公の着画・服を登録（無料・大容量）</span></div>
       <button class="btn-outline" onclick="copyExtractHelper()">
         ✨ Geminiに服を言語化してもらう指示文をコピー
       </button>
 
       <div class="upload-row">
         <div class="thumb-preview" id="thumbPreview">着画・服<br>画像なし</div>
-        <label class="file-label" for="closetFile">
-          📷 主人公の着画 / 服スクショを添付
-        </label>
+        <label class="file-label" for="closetFile">📷 主人公の着画 / 服スクショを添付</label>
         <input type="file" id="closetFile" accept="image/*" style="display:none;" onchange="handleClosetImage(this)">
       </div>
 
@@ -777,9 +663,10 @@
       </div>
       <div class="row-2">
         <div class="field"><label>時間帯</label><select id="time1" onchange="autoMakeupForSlot(1); syncAll();"></select></div>
-        <div class="field"><label>画角</label><select id="angle1" onchange="syncAll()"></select></div>
+        <div class="field"><label>距離・サイズ</label><select id="angle1" onchange="syncAll()"></select></div>
       </div>
-      <div class="field"><label>場所（自宅・外出）</label><select id="place1" onchange="autoMakeupForSlot(1); syncAll();"></select></div>
+      <div class="field"><label>場所（自宅4部屋は厳密アンカー固定）</label><select id="place1" onchange="autoMakeupForSlot(1); syncAll();"></select></div>
+      <div class="field"><label>📷 カメラ位置・画角（間取りが崩れない安全範囲）</label><select id="cam1" onchange="syncAll()"></select></div>
       <div class="row-2">
         <div class="field"><label>撮影スタイル</label><select id="style1" onchange="syncAll()"></select></div>
         <div class="field"><label>視線（3割外し推奨）</label><select id="gaze1" onchange="syncAll()"></select></div>
@@ -822,9 +709,10 @@
       <div id="slot2NormalFields">
         <div class="row-2">
           <div class="field"><label>時間帯</label><select id="time2" onchange="autoMakeupForSlot(2); syncAll();"></select></div>
-          <div class="field"><label>画角</label><select id="angle2" onchange="syncAll()"></select></div>
+          <div class="field"><label>距離・サイズ</label><select id="angle2" onchange="syncAll()"></select></div>
         </div>
-        <div class="field"><label>場所（自宅・外出）</label><select id="place2" onchange="autoMakeupForSlot(2); syncAll();"></select></div>
+        <div class="field"><label>場所（自宅4部屋は厳密アンカー固定）</label><select id="place2" onchange="autoMakeupForSlot(2); syncAll();"></select></div>
+        <div class="field"><label>📷 カメラ位置・画角（間取りが崩れない安全範囲）</label><select id="cam2" onchange="syncAll()"></select></div>
         <div class="row-2">
           <div class="field"><label>撮影スタイル</label><select id="style2" onchange="syncAll()"></select></div>
           <div class="field"><label>視線（3割外し推奨）</label><select id="gaze2" onchange="syncAll()"></select></div>
@@ -856,6 +744,7 @@
         <span>生成された完全プロンプト</span>
         <button class="mini-btn star-btn" onclick="saveFavorite()">★ 神保存</button>
       </div>
+      <div class="attach-guide" id="attachGuideOut" style="margin-top:0; margin-bottom:10px;"></div>
       <div class="output-pre" id="promptOutput"></div>
     </div>
 
@@ -910,7 +799,7 @@ const DEFAULT_BASE_PROMPT = `生っぽく
 手ブレ
 加工なし
 
-被写体は26歳のモデル級にかわいい成人日本人女性。色白で自然なツヤのある透明肌、すっきりとした小顔の卵型。くっきり二重の大きな瞳と自然な涙袋、口角の上がった上品で親しみやすい微笑み。控えめなピンクベージュのネイルで清潔感があり、華やかだが派手すぎない美しさ（メイクの濃さは各写真の時間帯・場所指定に合わせる）。落ち着いたブラウンの髪色で、透け感のあるシースルーバングと顔周りの後れ毛が特徴のストレートセミロング。肩や腕が華奢なスレンダー体型で、デコルテがきれいに見えつつ自然なメリハリのある女性らしいスタイル。
+被写体は添付画像①の26歳のモデル級にかわいい成人日本人女性。色白で自然なツヤのある透明肌、すっきりとした小顔の卵型。くっきり二重の大きな瞳と自然な涙袋、口角の上がった上品で親しみやすい微笑み。控えめなピンクベージュのネイルで清潔感があり、華やかだが派手すぎない美しさ（メイクの濃さは各写真の時間帯・場所指定に合わせる）。落ち着いたブラウンの髪色で、透け感のあるシースルーバングと顔周りの後れ毛が特徴のストレートセミロング。肩や腕が華奢なスレンダー体型で、デコルテがきれいに見えつつ自然なメリハリのある女性らしいスタイル。
 
 1枚の横長画像（9:8）の中に、9:16構図の写真を左右2枚並べる。左右はそれぞれ独立したスマホ写真として成立する構図。被写体はややアップ気味で、各半分を切り抜くとそのまま9:16になるように配置。
 
@@ -939,24 +828,54 @@ const CAT_LABELS = {
   gym: "🏊‍♀️ ジム"
 };
 
+// 単体4枚から精密抽出した固定空間アンカー（間取り・配置100%ロック用）
+const HOME_REF_ANCHORS = {
+  "脱衣所": {
+    gridPos: "左上（脱衣所・洗面所）",
+    anchor: "鏡越し手前下の白鏡枠、左壁の白枠すりガラス浴室ドアとシルバーの横向きタオル掛けバー、奥左壁の縦2段スイッチ＆給湯リモコン、正面奥の白ドア枠と奥側左ヒンジで開いたダークブラウン室内ドア（その先の暗い部屋・ダークブラウン床・濃いグレーカーテン）、右端の白い多段オープン棚と暗色収納ボックスという左右位置と構造を一切変えず完全固定"
+  },
+  "玄関": {
+    gridPos: "右上（玄関）",
+    anchor: "正面〜右のダークブラウン横木目調玄関ドア（中央ドアスコープ・下部濃茶の縦長ドアポスト・右端シルバーレバーハンドル＆U字ドアガード・最上部シルバーのドアクローザー）、左の白クロス壁と斜め天板の白シューズボックス（下段オープン棚の白いケース類）、明るいライトグレーの長方形タイル床と段差框という左右位置と構造を一切変えず完全固定"
+  },
+  "寝室": {
+    gridPos: "左下（寝室）",
+    anchor: "左〜正面奥のダークブラウン木目ヘッドボード、シワ感のある白シーツと白い枕2つ並び、ヘッドボード右端の白コンセントと差し込まれた充電コード、右奥角のダークブラウン2段ナイトテーブルと四角い白シェードの暖色ベッドサイドランプ、白壁と右上天井の白い梁角という左右位置と構造を一切変えず完全固定"
+  },
+  "リビング": {
+    gridPos: "右下（リビング）",
+    anchor: "手前のライトグレー2分割ファブリックソファ（織り感のある生地と手前アームレスト）、左奥の濃い色カーテンと黒い小型家具、左奥角の細身ポール暖色フロアランプ（壁に扇状に広がる電球色光と天井左の白い梁）、正面右寄り白壁の4連パネル（上段インターホンモニター＆リモコン、下段スイッチ2列）、右端のダークブラウン縦長室内ドアという左右位置と構造を一切変えず完全固定"
+  }
+};
+
 const DB = {
   times: ["朝", "昼", "夕方", "夜"],
   places: [
-    { label: "玄関（ダークブラウン木目ドア・白い壁紙・白シューズボックス）", short: "玄関", type: "home", indoor: false },
-    { label: "リビング（グレーのソファ・白い壁紙・壁のインターホン・奥にダークブラウンのドア）", short: "リビング", type: "home", indoor: true },
-    { label: "寝室（ダークブラウンのヘッドボード・暖色ベッドサイドランプ・白系寝具）", short: "寝室", type: "home", indoor: true },
-    { label: "脱衣所（洗面台の鏡越し・白い収納棚とすりガラス扉）", short: "脱衣所", type: "home", mirror: true, indoor: true },
-    { label: "姿見越し（白フレーム全身鏡・明るい木目床・白クローゼット）", short: "姿見越し", type: "home", mirror: true, indoor: true },
-    { label: "フィットネスクラブ・プールの更衣室（落ち着いた木目調ロッカー・ダウンライト・鏡越し）", short: "プール更衣室", type: "gym", mirror: true, indoor: true },
-    { label: "クリニック近くのカフェ店内・壁際の角席（落ち着いた壁面を背にして座る・アウター脱ぎ・ラテあり）", short: "カフェ", type: "out", indoor: true },
-    { label: "通勤路・ビルの落ち着いた壁面や太い柱をすぐ背にした歩道脇（後ろから見られない位置）", short: "通勤路", type: "out", indoor: false },
-    { label: "ピラティススタジオの壁際ロビー・更衣室（白い壁や柱を背に・屋内アウターなし）", short: "ピラティス", type: "out", indoor: true },
-    { label: "百貨店のコスメフロア・洗練されたディスプレイ棚や壁面をすぐ背にした一角（店内アウターなし）", short: "百貨店", type: "out", indoor: true },
-    { label: "落ち着いたビストロ・イタリアンの壁際テーブル席（壁やパーティションを背に・店内アウターなし）", short: "ディナー", type: "out", indoor: true },
-    { label: "美容院帰り・サロンの落ち着いた外壁やショーウィンドウを背にした歩道脇（自然光）", short: "美容院帰り", type: "out", indoor: false },
-    { label: "商業施設・アパレル店付近（ガラスのディスプレイや柱をすぐ背にして撮影・アウターなし）", short: "ディスプレイ前", type: "out", indoor: true },
-    { label: "仕事帰りの高級スーパー・デパ地下帰り（建物の外壁や柱を背にした歩道脇・一人分の少量食材入り小さなエコバッグ持ち）", short: "食材買出し", type: "out", indoor: false, grocery: true },
-    { label: "休日のスーパー・パン屋帰り（お店の壁やショーウィンドウを背にした歩道脇・少量入りエコバッグ持ち）", short: "休日買出し", type: "out", indoor: false, grocery: true }
+    { label: "玄関（固定単体・ダークブラウン横木目ドア＆ポスト＆白棚）", short: "玄関", type: "home", indoor: false, hasRef: true },
+    { label: "リビング（固定単体・ライトグレーソファ＆左奥暖色ランプ＆壁4連パネル）", short: "リビング", type: "home", indoor: true, hasRef: true },
+    { label: "寝室（固定単体・ダークブラウンヘッドボード＆白枕2つ＆右奥ランプ）", short: "寝室", type: "home", indoor: true, hasRef: true },
+    { label: "脱衣所（固定単体・鏡越し・左すりガラス扉＆奥ダークブラウン扉＆右白棚）", short: "脱衣所", type: "home", mirror: true, indoor: true, hasRef: true },
+    { label: "姿見越し（白フレーム全身鏡・明るい木目床・白クローゼット）", short: "姿見越し", type: "home", mirror: true, indoor: true, hasRef: false },
+    { label: "フィットネスクラブ・プールの更衣室（落ち着いた木目調ロッカー・ダウンライト・鏡越し）", short: "プール更衣室", type: "gym", mirror: true, indoor: true, hasRef: false },
+    { label: "クリニック近くのカフェ店内・壁際の角席（落ち着いた壁面を背にして座る・アウター脱ぎ・ラテあり）", short: "カフェ", type: "out", indoor: true, hasRef: false },
+    { label: "通勤路・ビルの落ち着いた壁面や太い柱をすぐ背にした歩道脇（後ろから見られない位置）", short: "通勤路", type: "out", indoor: false, hasRef: false },
+    { label: "ピラティススタジオの壁際ロビー・更衣室（白い壁や柱を背に・屋内アウターなし）", short: "ピラティス", type: "out", indoor: true, hasRef: false },
+    { label: "百貨店のコスメフロア・洗練されたディスプレイ棚や壁面をすぐ背にした一角（店内アウターなし）", short: "百貨店", type: "out", indoor: true, hasRef: false },
+    { label: "落ち着いたビストロ・イタリアンの壁際テーブル席（壁やパーティションを背に・店内アウターなし）", short: "ディナー", type: "out", indoor: true, hasRef: false },
+    { label: "美容院帰り・サロンの落ち着いた外壁やショーウィンドウを背にした歩道脇（自然光）", short: "美容院帰り", type: "out", indoor: false, hasRef: false },
+    { label: "商業施設・アパレル店付近（ガラスのディスプレイや柱をすぐ背にして撮影・アウターなし）", short: "ディスプレイ前", type: "out", indoor: true, hasRef: false },
+    { label: "仕事帰りの高級スーパー・デパ地下帰り（建物の外壁や柱を背にした歩道脇・一人分の少量食材入り小さなエコバッグ持ち）", short: "食材買出し", type: "out", indoor: false, grocery: true, hasRef: false },
+    { label: "休日のスーパー・パン屋帰り（お店の壁やショーウィンドウを背にした歩道脇・少量入りエコバッグ持ち）", short: "休日買出し", type: "out", indoor: false, grocery: true, hasRef: false }
+  ],
+  // 間取り崩壊を防ぐ安全範囲（±20〜25度・上下チルト・寄り引き）のカメラ移動
+  cameraMoves: [
+    "参照画像と同じ正面寄りのカメラ位置（背景の主要アンカーをそのまま配置）",
+    "カメラを少し左（約20度）へずらした斜めアングル（参照画像の壁・家具配置を保ったまま奥行きを変える）",
+    "カメラを少し右（約20度）へずらした斜めアングル（参照画像のドアや照明の映り込み位置を少しずらす）",
+    "カメラをやや高めに構えた見下ろしアングル（部屋の配置は変えず、上目遣いとデコルテを強調）",
+    "カメラをやや低めに構えた見上げアングル（天井の梁や暖色光の広がりが入る手持ち自撮り感）",
+    "被写体へ寄った近距離クローズアップ（参照画像と同じ色味・照明・設備の一部が後ろで自然にボケる）",
+    "少し引いたワイド寄りアングル（ソファ・ベッド・玄関ドアなど参照画像の空間全体がより広く映る）"
   ],
   styles: ["自撮り（スマホ画角外）", "鏡越し自撮り（固定の白クリアケースiPhone持ち）", "友人撮影風（他撮り）"],
   angles: [
@@ -968,7 +887,7 @@ const DB = {
     "目元を画角外に切った口元〜デコルテ・谷間の超アップ",
     "全身（鏡越し）"
   ],
-  bgs: ["極力背景は映さない", "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度", "生活感や背景を自然に映す"],
+  bgs: ["背後の固定空間・壁や設備がはっきりわかる程度（同一部屋感を強調）", "背後の固定空間が自然にボケて馴染む程度", "極力背景は映さず色味と照明だけ引き継ぐ"],
   makeups: [
     "清潔感のあるツヤ肌ナチュラルメイク（控えめなピンクベージュリップ）",
     "少しメイクが馴染んだ仕事終わりの自然な肌感（ナチュラルリップ）",
@@ -1027,23 +946,22 @@ const DB = {
     "温かいカフェラテのカップを両手で包み込む仕草",
     "上品なデパコスのハンドクリームや小さなリップをテーブル端に少し置く"
   ],
-  // 💅 2枚目「顔なしパーツ・生活感小物カット」バリエーション
   partsOnlyCuts: {
     clear: [
-      "顔は一切映さない生活感カット。カフェのテーブル上で、控えめなピンクベージュのネイルをした華奢な両手で温かいラテのカップを包む手元アップ（アウターなし・袖口のもこもこニットが少し映る）",
-      "顔は一切映さない帰宅カット。玄関付近で小さなエコバッグ（一人分のカットフルーツとサラダなど少量）とブランドミニバッグを持つ手元・足元スナップ",
-      "顔は一切映さない冬の雰囲気カット。カシミヤ風マフラーに顎までうずめた口元〜鎖骨の超アップ（髪と華奢なネックレスが少し覗く・背景ボケ）",
-      "顔は一切映さないリラックスカット。薄暗い暖色間接照明のリビングで、グレーのソファに座り温かいマグカップを両手で持つ手元と厚手ニットカーデの袖口"
+      { room: null, text: "顔は一切映さない生活感カット。カフェのテーブル上で、控えめなピンクベージュのネイルをした華奢な両手で温かいラテのカップを包む手元アップ（アウターなし・袖口のもこもこニットが少し映る）" },
+      { room: "玄関", text: "顔は一切映さない帰宅カット。自宅玄関（ダークブラウン横木目ドア・ライトグレー長方形タイル床）で、小さなエコバッグ（一人分のカットフルーツとサラダなど少量）とブランドミニバッグを持つ手元・足元スナップ" },
+      { room: null, text: "顔は一切映さない冬の雰囲気カット。カシミヤ風マフラーに顎までうずめた口元〜鎖骨の超アップ（髪と華奢なネックレスが少し覗く・背景ボケ）" },
+      { room: "リビング", text: "顔は一切映さないリラックスカット。薄暗い暖色間接照明のリビング（ライトグレーの2分割ファブリックソファ）に座り、温かいマグカップを両手で持つ手元と厚手ニットカーデの袖口" }
     ],
     sexy: [
-      "顔は一切映さない大人っぽいパーツカット。薄暗い暖色照明のリビングで、鎖骨・デコルテと華奢なゴールドネックレス、オフショルやサテンレースの襟元だけを切り取った近距離スナップ",
-      "顔は一切映さない夜の寝室カット。暖色ベッドサイドランプの灯りの中、白いシーツの上で厚手もこもこ靴下を履いた素脚とレース裾のパジャマが覗く構図",
-      "顔は一切映さない脱衣所・美容カット。白い洗面台にデパコスの美容液とハンドクリーム、控えめピンクベージュネイルの華奢な手元と鎖骨がうっすら映るスナップ"
+      { room: "リビング", text: "顔は一切映さない大人っぽいパーツカット。薄暗い暖色照明のリビング（ライトグレーのソファと左奥の暖色光）で、鎖骨・デコルテと華奢なゴールドネックレス、オフショルやサテンレースの襟元だけを切り取った近距離スナップ" },
+      { room: "寝室", text: "顔は一切映さない夜の寝室カット。暖色ベッドサイドランプの灯りの寝室（白いシワ感のあるシーツとダークブラウンのヘッドボード）で、厚手もこもこ靴下を履いた素脚とレース裾のパジャマが覗く構図" },
+      { room: "脱衣所", text: "顔は一切映さない脱衣所・美容カット。脱衣所（白い収納棚・白枠すりガラス扉の空間）でデパコスの美容液と控えめピンクベージュネイルの華奢な手元、鎖骨がうっすら映るスナップ" }
     ],
     r18: [
-      "目元より上は画角外で顔を出さないパーツ切り取りカット。暖色間接照明の寝室で、ベッドにうつ伏せになり少し半開きの唇と鎖骨・サテンレースの深いVライン谷間だけを超アップで撮影（SNS投稿可能な上品ライン）",
-      "顔は一切映さない艶っぽいパーツカット。暖色照明のリビングで、厚手もこもこ羽織りが片肩からずり落ち、艶のある鎖骨・肩の素肌・繊細なレースインナーの隙間だけを切り取った近距離スナップ",
-      "顔は一切映さない湯上がりカット。脱衣所または寝室の薄暗い暖色光の中、白いバスタオルを胸元に巻いたデコルテと少し濡れた毛先・上気した素肌のパーツアップ"
+      { room: "寝室", text: "目元より上は画角外で顔を出さないパーツ切り取りカット。暖色間接照明の寝室（白シーツと右奥の四角い暖色ランプ）で、ベッドにうつ伏せになり少し半開きの唇と鎖骨・サテンレースの深いVライン谷間だけを超アップで撮影（SNS投稿可能な上品ライン）" },
+      { room: "リビング", text: "顔は一切映さない艶っぽいパーツカット。暖色照明のリビング（ライトグレーのファブリックソファ）で、厚手もこもこ羽織りが片肩からずり落ち、艶のある鎖骨・肩の素肌・繊細なレースインナーの隙間だけを切り取った近距離スナップ" },
+      { room: "脱衣所", text: "顔は一切映さない湯上がりカット。脱衣所（左すりガラス扉・右白棚の鏡越し空間）で、白いバスタオルを胸元に巻いたデコルテと少し濡れた毛先・上気した素肌のパーツアップ" }
     ]
   },
   hairs: {
@@ -1288,7 +1206,6 @@ const DB = {
       ]
     }
   },
-  // 💬 Threads返信誘発キャプション（型別）
   captions: {
     clinic_onoff: [
       { type: "二択質問型", text: "朝の出勤モードと、夜の帰宅オフモード。みんなは1枚目と2枚目どっちのほうが好き？☕️🌙" },
@@ -1328,72 +1245,59 @@ const DB = {
 
 let currentSeason = "aw";
 let currentMode = "clinic_onoff";
+let currentRefMode = "single"; // single(推奨) | grid | none
 let currentClosetFilter = "all";
 let pendingImageData = "";
 let myClosetCache = [];
 let idb = null;
 let currentCaptionObj = { type: "", text: "" };
+let currentPartsRoom = null;
 
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function placeBy(shortName) { return DB.places.find(p => p.short === shortName); }
 function placeByLabel(label) { return DB.places.find(p => p.label === label) || DB.places[0]; }
 
-/* ===== モードのティア判定（バランスメーター用） ===== */
+function setRefMode(mode) {
+  currentRefMode = mode;
+  localStorage.setItem("ds_ref_mode_v2", mode);
+  ["single", "grid", "none"].forEach(m => {
+    document.getElementById(`ref-${m}`).classList.toggle("active", m === mode);
+  });
+  syncAll();
+}
+
 function getTierForMode(mode) {
   if (mode === "r18_edge") return "r18";
   if (mode === "night_elegant" || mode === "holiday_out") return "sexy";
   return "clear";
 }
 
-/* ===== 曜日・時間帯ベースのおすすめモード自動選択 ===== */
 function decideInitialModeByClock() {
   const now = new Date();
-  const day = now.getDay(); // 0:日, 1:月 ... 5:金, 6:土
+  const day = now.getDay();
   const hour = now.getHours();
   const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
   const dStr = dayNames[day];
-
-  let mode = "clinic_onoff";
-  let label = `${dStr}曜おすすめ`;
+  let mode = "clinic_onoff", label = `${dStr}曜おすすめ`;
 
   if (day === 0 || day === 6) {
-    if (hour >= 21 || hour < 4) {
-      mode = "night_elegant";
-      label = `${dStr}曜夜おすすめ`;
-    } else if (hour >= 11 && hour <= 17) {
-      mode = "holiday_out";
-      label = `${dStr}曜昼おすすめ`;
-    } else {
-      mode = "holiday_home";
-      label = `${dStr}曜朝おすすめ`;
-    }
+    if (hour >= 21 || hour < 4) { mode = "night_elegant"; label = `${dStr}曜夜おすすめ`; }
+    else if (hour >= 11 && hour <= 17) { mode = "holiday_out"; label = `${dStr}曜昼おすすめ`; }
+    else { mode = "holiday_home"; label = `${dStr}曜朝おすすめ`; }
   } else if (day === 5 && hour >= 20) {
-    // 金曜夜はバランスを見てすれすれ解禁または夜エレガント
     const stats = get7DayStats();
-    if (stats.total >= 3 && stats.r18Ratio < 0.25) {
-      mode = "r18_edge";
-      label = "金曜夜・解禁おすすめ";
-    } else {
-      mode = "night_elegant";
-      label = "金曜夜おすすめ";
-    }
+    if (stats.total >= 3 && stats.r18Ratio < 0.25) { mode = "r18_edge"; label = "金曜夜・解禁おすすめ"; }
+    else { mode = "night_elegant"; label = "金曜夜おすすめ"; }
   } else {
-    if (hour >= 11 && hour <= 17) {
-      mode = "clinic_break";
-      label = `${dStr}曜昼おすすめ`;
-    } else {
-      mode = "clinic_onoff";
-      label = `${dStr}曜おすすめ`;
-    }
+    if (hour >= 11 && hour <= 17) { mode = "clinic_break"; label = `${dStr}曜昼おすすめ`; }
+    else { mode = "clinic_onoff"; label = `${dStr}曜おすすめ`; }
   }
   document.getElementById("autoDayTag").textContent = `📅 ${label}`;
   return mode;
 }
 
-/* ===== 投稿バランスメーター（直近7日間） ===== */
-function getHistoryList() {
-  return JSON.parse(localStorage.getItem("ds_history_v2") || "[]");
-}
+/* ===== 投稿バランスメーター ===== */
+function getHistoryList() { return JSON.parse(localStorage.getItem("ds_history_v2") || "[]"); }
 function get7DayStats() {
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
   const recent = getHistoryList().filter(i => (i.ts || 0) >= cutoff);
@@ -1401,12 +1305,7 @@ function get7DayStats() {
   const sexy = recent.filter(i => i.tier === "sexy").length;
   const r18 = recent.filter(i => i.tier === "r18").length;
   const total = recent.length;
-  return {
-    clear, sexy, r18, total,
-    clearRatio: total ? clear / total : 0,
-    sexyRatio: total ? sexy / total : 0,
-    r18Ratio: total ? r18 / total : 0
-  };
+  return { clear, sexy, r18, total, r18Ratio: total ? r18 / total : 0 };
 }
 function renderBalanceMeter() {
   const s = get7DayStats();
@@ -1427,94 +1326,60 @@ function renderBalanceMeter() {
   document.getElementById("meterStats").textContent = `直近7日(${s.total}件)：清楚 ${s.clear}(${pClear}%) / セクシー ${s.sexy}(${pSexy}%) / 🔞 ${s.r18}(${pR18}%)`;
 
   let tip = "";
-  if (pR18 >= 35) {
-    tip = "⚠️ 🔞すれすれが多めです！業者感・規制防止のため、次は「平日出勤＆帰宅」など清楚系を挟むのがおすすめ。";
-  } else if (s.clear >= 3 && s.r18 === 0) {
-    tip = "✨ 清楚な日常がしっかり貯まりました！今夜は「🔞すれすれ」や「🌙夜エレガント」のギャップ投下チャンス！";
-  } else {
-    tip = "👍 黄金比（清楚7〜8割：攻め2〜3割）に近い理想的なアカウントバランスです！";
-  }
+  if (pR18 >= 35) tip = "⚠️ 🔞すれすれが多めです！業者感・規制防止のため、次は「平日出勤＆帰宅」など清楚系を挟むのがおすすめ。";
+  else if (s.clear >= 3 && s.r18 === 0) tip = "✨ 清楚な日常がしっかり貯まりました！今夜は「🔞すれすれ」や「🌙夜エレガント」のギャップ投下チャンス！";
+  else tip = "👍 黄金比（清楚7〜8割：攻め2〜3割）に近い理想的なアカウントバランスです！";
   document.getElementById("meterTip").textContent = tip;
 }
 
-/* ===== 視線・メイク・生活小物の自動選択 ===== */
 function pickGaze(isMirror = false, isR18 = false) {
-  // 約3割の確率で自然な視線外しを選ぶ
-  if (Math.random() < 0.32) {
-    if (isMirror) return DB.gazes.away[1];
-    return pick(DB.gazes.away);
-  }
-  if (isR18) return DB.gazes.direct[1];
-  return pick(DB.gazes.direct);
+  if (Math.random() < 0.32) return isMirror ? DB.gazes.away[1] : pick(DB.gazes.away);
+  return isR18 ? DB.gazes.direct[1] : pick(DB.gazes.direct);
 }
-
 function getAutoMakeup(time, placeLabel, isR18 = false) {
-  if (isR18 || placeLabel.includes("脱衣所") || (placeLabel.includes("寝室") && time === "夜")) {
-    return DB.makeups[2]; // お風呂上がりのすっぴん風
-  }
-  if (placeLabel.includes("寝室") && time === "朝") {
-    return DB.makeups[4]; // 寝起きほぼすっぴん
-  }
-  if (placeLabel.includes("リビング") && time === "夜") {
-    return Math.random() < 0.65 ? DB.makeups[2] : DB.makeups[1];
-  }
-  if (time === "夕方") {
-    return DB.makeups[1]; // 少し馴染んだ仕事終わり肌
-  }
-  if (currentMode === "holiday_out") {
-    return DB.makeups[3]; // 休日ツヤ肌
-  }
-  return DB.makeups[0]; // 朝の清潔感ツヤ肌
+  if (isR18 || placeLabel.includes("脱衣所") || (placeLabel.includes("寝室") && time === "夜")) return DB.makeups[2];
+  if (placeLabel.includes("寝室") && time === "朝") return DB.makeups[4];
+  if (placeLabel.includes("リビング") && time === "夜") return Math.random() < 0.65 ? DB.makeups[2] : DB.makeups[1];
+  if (time === "夕方") return DB.makeups[1];
+  if (currentMode === "holiday_out") return DB.makeups[3];
+  return DB.makeups[0];
 }
-
 function autoMakeupForSlot(n) {
   const t = document.getElementById(`time${n}`).value;
   const p = document.getElementById(`place${n}`).value;
   document.getElementById(`makeup${n}`).value = getAutoMakeup(t, p, currentMode === "r18_edge");
 }
-
 function pickLifeProp(time, placeObj) {
-  if (currentMode === "r18_edge") {
-    return Math.random() < 0.25 ? DB.props.homeNight[1] : DB.props.none;
-  }
-  if (placeObj.short === "カフェ" || placeObj.short === "ディナー") {
-    return Math.random() < 0.55 ? pick(DB.props.cafe) : DB.props.none;
-  }
-  if (placeObj.type === "out" && !placeObj.indoor && currentSeason === "aw") {
-    return Math.random() < 0.55 ? pick(DB.props.outdoorWinter) : DB.props.none;
-  }
+  if (currentMode === "r18_edge") return Math.random() < 0.25 ? DB.props.homeNight[1] : DB.props.none;
+  if (placeObj.short === "カフェ" || placeObj.short === "ディナー") return Math.random() < 0.55 ? pick(DB.props.cafe) : DB.props.none;
+  if (placeObj.type === "out" && !placeObj.indoor && currentSeason === "aw") return Math.random() < 0.55 ? pick(DB.props.outdoorWinter) : DB.props.none;
   if ((placeObj.short === "リビング" || placeObj.short === "寝室" || placeObj.short === "脱衣所") && time === "夜") {
-    if (placeObj.short === "脱衣所") {
-      return Math.random() < 0.5 ? DB.props.homeNight[2] : DB.props.none;
-    }
+    if (placeObj.short === "脱衣所") return Math.random() < 0.5 ? DB.props.homeNight[2] : DB.props.none;
     return Math.random() < 0.45 ? pick(DB.props.homeNight) : DB.props.none;
   }
   return DB.props.none;
 }
 
-/* ===== 真冬羽織り・2枚目パーツのみトグル ===== */
-function isWinterRobeOn() {
-  return currentSeason === "aw" && document.getElementById("winterRobeCheck").checked;
-}
+function isWinterRobeOn() { return currentSeason === "aw" && document.getElementById("winterRobeCheck").checked; }
 function toggleWinterRobe() {
   localStorage.setItem("ds_winter_robe", document.getElementById("winterRobeCheck").checked ? "1" : "0");
   runCurrentMode();
 }
-function isPartsOnlyOn() {
-  return document.getElementById("partsOnlyCheck").checked;
-}
+function isPartsOnlyOn() { return document.getElementById("partsOnlyCheck").checked; }
 function togglePartsOnly() {
   const on = isPartsOnlyOn();
   document.getElementById("partsNotice").style.display = on ? "block" : "none";
   document.getElementById("partsEditor").style.display = on ? "block" : "none";
   document.getElementById("slot2NormalFields").style.display = on ? "none" : "block";
   if (on) rerollPartsOnly();
-  else syncAll();
+  else { currentPartsRoom = null; syncAll(); }
 }
 function rerollPartsOnly() {
   const tier = getTierForMode(currentMode);
   const pool = DB.partsOnlyCuts[tier] || DB.partsOnlyCuts.clear;
-  document.getElementById("partsText").value = pick(pool);
+  const chosen = pick(pool);
+  currentPartsRoom = chosen.room;
+  document.getElementById("partsText").value = chosen.text;
   syncAll();
 }
 function addWinterRobeToSlot(slotNum) {
@@ -1526,32 +1391,25 @@ function addWinterRobeToSlot(slotNum) {
   showToast(`${slotNum}枚目に厚め羽織りを追加しました`);
 }
 
-/* ===== Threadsキャプション操作 ===== */
 function rerollCaption() {
   const pool = DB.captions[currentMode] || DB.captions.clinic_onoff;
   let next = pick(pool);
-  if (pool.length > 1 && next.text === currentCaptionObj.text) {
-    next = pool[(pool.indexOf(next) + 1) % pool.length];
-  }
+  if (pool.length > 1 && next.text === currentCaptionObj.text) next = pool[(pool.indexOf(next) + 1) % pool.length];
   currentCaptionObj = next;
   document.getElementById("capTypeTag").textContent = next.type;
   document.getElementById("captionBox").textContent = next.text;
 }
 function copyCaption() {
-  navigator.clipboard.writeText(currentCaptionObj.text).then(() => {
-    showToast("Threads投稿文をコピーしました！");
-  });
+  navigator.clipboard.writeText(currentCaptionObj.text).then(() => showToast("Threads投稿文をコピーしました！"));
 }
 
-/* ===== IndexedDB（着画クローゼット） ===== */
+/* ===== IndexedDB ===== */
 function openClosetDB() {
   return new Promise((resolve, reject) => {
     const req = indexedDB.open("DailySelfieClosetDB", 1);
     req.onupgradeneeded = e => {
       const db = e.target.result;
-      if (!db.objectStoreNames.contains("items")) {
-        db.createObjectStore("items", { keyPath: "id" });
-      }
+      if (!db.objectStoreNames.contains("items")) db.createObjectStore("items", { keyPath: "id" });
     };
     req.onsuccess = e => resolve(e.target.result);
     req.onerror = e => reject(e.target.error);
@@ -1581,7 +1439,6 @@ function dbDelete(id) {
     tx.onerror = e => reject(e.target.error);
   });
 }
-
 async function initClosetStorage() {
   try {
     idb = await openClosetDB();
@@ -1597,7 +1454,6 @@ async function initClosetStorage() {
   }
   renderCloset();
 }
-
 function shouldUseMyCloset() { return document.getElementById("useMyClosetCheck").checked; }
 function saveClosetToggle() { localStorage.setItem("ds_use_my_closet", shouldUseMyCloset() ? "1" : "0"); }
 function pickMyClosetItem(cat) {
@@ -1634,13 +1490,8 @@ async function addClosetItem() {
   const text = document.getElementById("closetText").value.trim();
   if (!text) { showToast("服装プロンプトを入力してください"); return; }
   const item = { id: Date.now(), cat, text, img: pendingImageData };
-  if (idb) {
-    await dbPut(item);
-    myClosetCache = await dbGetAll();
-  } else {
-    myClosetCache.unshift(item);
-    localStorage.setItem("ds_my_closet_v1", JSON.stringify(myClosetCache));
-  }
+  if (idb) { await dbPut(item); myClosetCache = await dbGetAll(); }
+  else { myClosetCache.unshift(item); localStorage.setItem("ds_my_closet_v1", JSON.stringify(myClosetCache)); }
   document.getElementById("closetText").value = "";
   document.getElementById("closetFile").value = "";
   pendingImageData = "";
@@ -1668,9 +1519,7 @@ function renderCloset() {
         ${item.img ? `<img src="${item.img}" alt=""><span class="zoom-hint">拡大</span>` : "👗"}
       </div>
       <div class="closet-body">
-        <div class="closet-meta">
-          <span class="cat-tag ${item.cat === 'r18' ? 'r18-tag' : ''}">${CAT_LABELS[item.cat] || item.cat}</span>
-        </div>
+        <div class="closet-meta"><span class="cat-tag ${item.cat === 'r18' ? 'r18-tag' : ''}">${CAT_LABELS[item.cat] || item.cat}</span></div>
         <div class="closet-text">${escapeHtml(item.text)}</div>
         <div class="closet-actions">
           <button class="btn-wear" onclick="wearItem(${item.id}, 1)">1枚目に着せる</button>
@@ -1713,25 +1562,14 @@ function wearItem(id, slotNum) {
   showToast(`${slotNum}枚目に着せました！`);
 }
 async function deleteClosetItem(id) {
-  if (idb) {
-    await dbDelete(id);
-    myClosetCache = await dbGetAll();
-  } else {
-    myClosetCache = myClosetCache.filter(i => i.id !== id);
-    localStorage.setItem("ds_my_closet_v1", JSON.stringify(myClosetCache));
-  }
+  if (idb) { await dbDelete(id); myClosetCache = await dbGetAll(); }
+  else { myClosetCache = myClosetCache.filter(i => i.id !== id); localStorage.setItem("ds_my_closet_v1", JSON.stringify(myClosetCache)); }
   renderCloset();
   showToast("削除しました");
 }
 
-/* ===== JSONバックアップ書き出し＆復元 ===== */
 function exportBackup() {
-  const payload = {
-    version: 1,
-    exportedAt: new Date().toISOString(),
-    closet: myClosetCache,
-    favorites: getFavorites()
-  };
+  const payload = { version: 1, exportedAt: new Date().toISOString(), closet: myClosetCache, favorites: getFavorites() };
   const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -1743,7 +1581,6 @@ function exportBackup() {
   URL.revokeObjectURL(url);
   showToast("バックアップJSONを保存しました！");
 }
-
 function importBackup(input) {
   const file = input.files && input.files[0];
   if (!file) return;
@@ -1774,22 +1611,19 @@ function importBackup(input) {
         renderFavorites();
       }
       showToast(`復元完了！（服 ${addedCloset}着を読み込み）`);
-    } catch (err) {
-      alert("JSONファイルの読み込みに失敗しました。");
-    }
+    } catch (err) { alert("JSONファイルの読み込みに失敗しました。"); }
     input.value = "";
   };
   reader.readAsText(file);
 }
 
-/* ===== ⭐ 神プロンプト保存（お気に入り） ===== */
-function getFavorites() {
-  return JSON.parse(localStorage.getItem("ds_favorites_v1") || "[]");
-}
+/* ===== ⭐ 神プロンプト保存 ===== */
+function getFavorites() { return JSON.parse(localStorage.getItem("ds_favorites_v1") || "[]"); }
 function captureSlotState(n) {
   return {
     time: document.getElementById(`time${n}`).value,
     place: document.getElementById(`place${n}`).value,
+    cam: document.getElementById(`cam${n}`).value,
     angle: document.getElementById(`angle${n}`).value,
     style: document.getElementById(`style${n}`).value,
     gaze: document.getElementById(`gaze${n}`).value,
@@ -1805,13 +1639,13 @@ function saveFavorite() {
   const p1 = document.getElementById("place1").value.split("（")[0];
   const p2 = isPartsOnlyOn() ? "パーツカット" : document.getElementById("place2").value.split("（")[0];
   const now = new Date();
-  const dateStr = `${now.getMonth()+1}/${now.getDate()}`;
   const fav = {
     id: Date.now(),
-    title: `${currentMode === "r18_edge" ? "🔞 " : ""}${p1} × ${p2} (${dateStr})`,
+    title: `${currentMode === "r18_edge" ? "🔞 " : ""}${p1} × ${p2} (${now.getMonth()+1}/${now.getDate()})`,
     mode: currentMode,
     partsOnly: isPartsOnlyOn(),
     partsText: document.getElementById("partsText").value,
+    partsRoom: currentPartsRoom,
     slot1: captureSlotState(1),
     slot2: captureSlotState(2),
     caption: currentCaptionObj
@@ -1829,7 +1663,6 @@ function loadFavorite(id) {
   document.querySelectorAll(".story-btn").forEach(b => b.classList.remove("selected"));
   const modeBtn = document.getElementById(`mode-${currentMode}`);
   if (modeBtn) modeBtn.classList.add("selected");
-
   setSlot(1, fav.slot1);
   setSlot(2, fav.slot2);
   document.getElementById("partsOnlyCheck").checked = Boolean(fav.partsOnly);
@@ -1837,6 +1670,7 @@ function loadFavorite(id) {
   document.getElementById("partsEditor").style.display = fav.partsOnly ? "block" : "none";
   document.getElementById("slot2NormalFields").style.display = fav.partsOnly ? "none" : "block";
   if (fav.partsText) document.getElementById("partsText").value = fav.partsText;
+  currentPartsRoom = fav.partsRoom || null;
   if (fav.caption && fav.caption.text) {
     currentCaptionObj = fav.caption;
     document.getElementById("capTypeTag").textContent = fav.caption.type || "保存済";
@@ -1847,8 +1681,7 @@ function loadFavorite(id) {
   showToast("⭐ 神プロンプトを呼び出しました！");
 }
 function deleteFavorite(id) {
-  const list = getFavorites().filter(f => f.id !== id);
-  localStorage.setItem("ds_favorites_v1", JSON.stringify(list));
+  localStorage.setItem("ds_favorites_v1", JSON.stringify(getFavorites().filter(f => f.id !== id)));
   renderFavorites();
   showToast("削除しました");
 }
@@ -1872,15 +1705,14 @@ function renderFavorites() {
   `).join("");
 }
 
-/* ===== コーデ生成ロジック ===== */
+/* ===== コーデ生成 ===== */
 function buildElegantPajama() {
   const custom = pickMyClosetItem("room");
   let base = custom;
   if (!base) {
     const style = pick(DB.elegantPajamaStyles);
     base = (style.startsWith("白の") || style.startsWith("透け感") || style.startsWith("細リブ"))
-      ? style
-      : `${pick(DB.elegantPajamaColors)}の${style}`;
+      ? style : `${pick(DB.elegantPajamaColors)}の${style}`;
   }
   if (isWinterRobeOn() && !base.includes("パーカー") && !base.includes("ガウン") && !base.includes("カーディガン")) {
     return `${base}の上に、${pick(DB.winterRobes)}を重ね着`;
@@ -1891,15 +1723,12 @@ function buildR18Pack() {
   const custom = pickMyClosetItem("r18");
   if (custom) {
     const layered = (isWinterRobeOn() && Math.random() < 0.65 && !custom.includes("タオル") && !custom.includes("シーツ") && !custom.includes("ガウン"))
-      ? `${custom}の上に、${pick(DB.winterRobes)}を羽織る`
-      : custom;
+      ? `${custom}の上に、${pick(DB.winterRobes)}を羽織る` : custom;
     return { text: layered, places: ["寝室", "リビング", "脱衣所"], wet: false };
   }
   const baseObj = pick(DB.r18Outfits);
   let text = baseObj.text;
-  if (isWinterRobeOn() && baseObj.canLayerRobe && Math.random() < 0.75) {
-    text = `${baseObj.text}の上に、${pick(DB.winterRobes)}を羽織る`;
-  }
+  if (isWinterRobeOn() && baseObj.canLayerRobe && Math.random() < 0.75) text = `${baseObj.text}の上に、${pick(DB.winterRobes)}を羽織る`;
   return { text, places: baseObj.places, wet: baseObj.wet };
 }
 function buildHolidayCore() {
@@ -1907,16 +1736,12 @@ function buildHolidayCore() {
   const c = DB.closet[currentSeason];
   if (custom) return { custom: true, text: custom, outer: pick(c.holidayOuter) };
   const inner = pick(c.holidaySexyInner);
-  const isOnePiece = inner.includes("ワンピース");
-  const bottom = isOnePiece ? "" : `、${pick(c.holidaySexyBottom)}`;
-  const acc = pick(c.acc);
-  return { custom: false, inner, bottom, acc, outer: pick(c.holidayOuter) };
+  const bottom = inner.includes("ワンピース") ? "" : `、${pick(c.holidaySexyBottom)}`;
+  return { custom: false, inner, bottom, acc: pick(c.acc), outer: pick(c.holidayOuter) };
 }
 function formatHoliday(core, indoor, addGrocery = false) {
   const groceryText = addGrocery ? `、${pick(DB.groceryProps)}` : "";
-  if (core.custom) {
-    return indoor ? `アウター（コート・ダウン）は脱いで、${core.text}${groceryText}` : `${core.text}${groceryText}`;
-  }
+  if (core.custom) return indoor ? `アウター（コート・ダウン）は脱いで、${core.text}${groceryText}` : `${core.text}${groceryText}`;
   if (indoor || core.outer === "アウターなし") {
     const prefix = indoor ? "アウター（コート・ダウン）は脱いで、" : "";
     return `${prefix}${core.inner}${core.bottom}、${core.acc}${groceryText}`;
@@ -1926,36 +1751,36 @@ function formatHoliday(core, indoor, addGrocery = false) {
 function buildCommute(indoor = false, forceInner = null, addGrocery = false) {
   const custom = !forceInner ? pickMyClosetItem("commute") : null;
   const groceryText = addGrocery ? `、${pick(DB.groceryProps)}` : "";
-  if (custom) {
-    return indoor ? `アウター（コート・ダウン）は脱いで、${custom}${groceryText}` : `${custom}${groceryText}`;
-  }
+  if (custom) return indoor ? `アウター（コート・ダウン）は脱いで、${custom}${groceryText}` : `${custom}${groceryText}`;
   const c = DB.closet[currentSeason];
   const outer = pick(c.commuteOuter);
   const inner = forceInner || pick(c.commuteInner);
-  const isOnePiece = inner.includes("ワンピース");
-  const bottom = isOnePiece ? "" : `、${pick(c.commuteBottom)}`;
-  const acc = pick(c.acc);
+  const bottom = inner.includes("ワンピース") ? "" : `、${pick(c.commuteBottom)}`;
   if (indoor || outer === "アウターなし") {
     const prefix = indoor ? "アウター（コート・ダウン）は脱いで、" : "";
-    return `${prefix}${inner}${bottom}、${acc}${groceryText}`;
+    return `${prefix}${inner}${bottom}、${pick(c.acc)}${groceryText}`;
   }
-  return `${outer}に${inner}${bottom}、${acc}${groceryText}`;
+  return `${outer}に${inner}${bottom}、${pick(c.acc)}${groceryText}`;
 }
-function buildSwimOrGym() {
-  return pickMyClosetItem("gym") || pick(DB.swimWear);
-}
+function buildSwimOrGym() { return pickMyClosetItem("gym") || pick(DB.swimWear); }
 
-/* ===== 初期化・UI制御 ===== */
+/* ===== 初期化 ===== */
 async function init() {
-  document.getElementById("basePrompt").value = localStorage.getItem("ds_base_prompt_v7") || DEFAULT_BASE_PROMPT;
+  document.getElementById("basePrompt").value = localStorage.getItem("ds_base_prompt_v9") || DEFAULT_BASE_PROMPT;
   const savedToggle = localStorage.getItem("ds_use_my_closet");
   if (savedToggle !== null) document.getElementById("useMyClosetCheck").checked = savedToggle === "1";
   const savedWinter = localStorage.getItem("ds_winter_robe");
   if (savedWinter !== null) document.getElementById("winterRobeCheck").checked = savedWinter === "1";
+  const savedRef = localStorage.getItem("ds_ref_mode_v2");
+  if (savedRef) currentRefMode = savedRef;
+  ["single", "grid", "none"].forEach(m => {
+    document.getElementById(`ref-${m}`).classList.toggle("active", m === currentRefMode);
+  });
 
   [1, 2].forEach(n => {
     fill(`time${n}`, DB.times);
     fill(`place${n}`, DB.places.map(p => p.label));
+    fill(`cam${n}`, DB.cameraMoves);
     fill(`style${n}`, DB.styles);
     fill(`angle${n}`, DB.angles);
     fill(`gaze${n}`, DB.allGazes);
@@ -1969,16 +1794,13 @@ async function init() {
   renderBalanceMeter();
   renderFavorites();
 
-  // 曜日・時間帯に応じた初期モードを自動選択
   currentMode = decideInitialModeByClock();
   const btn = document.getElementById(`mode-${currentMode}`);
   if (btn) btn.classList.add("selected");
   runCurrentMode();
 }
 
-function fill(id, list) {
-  document.getElementById(id).innerHTML = list.map(v => `<option value="${v}">${v}</option>`).join("");
-}
+function fill(id, list) { document.getElementById(id).innerHTML = list.map(v => `<option value="${v}">${v}</option>`).join(""); }
 function setSeason(s) {
   currentSeason = s;
   document.getElementById("btnAW").classList.toggle("active", s === "aw");
@@ -2007,12 +1829,13 @@ function selectMode(mode) {
 function setSlot(n, d) {
   document.getElementById(`time${n}`).value = d.time;
   document.getElementById(`place${n}`).value = d.place;
+  document.getElementById(`cam${n}`).value = d.cam || pick(DB.cameraMoves);
   document.getElementById(`style${n}`).value = d.style;
   document.getElementById(`angle${n}`).value = d.angle;
   document.getElementById(`gaze${n}`).value = d.gaze || DB.allGazes[0];
   document.getElementById(`makeup${n}`).value = d.makeup || getAutoMakeup(d.time, d.place, currentMode === "r18_edge");
   document.getElementById(`prop${n}`).value = d.prop || DB.props.none;
-  document.getElementById(`bg${n}`).value = d.bg;
+  document.getElementById(`bg${n}`).value = d.bg || DB.bgs[0];
   document.getElementById(`cloth${n}`).value = d.cloth;
   document.getElementById(`hair${n}`).value = d.hair;
   document.getElementById(`pose${n}`).value = d.pose;
@@ -2025,22 +1848,21 @@ function runCurrentMode() {
     const sharedInner = pick(c.commuteInner);
     const p1 = placeBy("玄関");
     setSlot(1, {
-      time: "朝", place: p1.label, style: DB.styles[0], angle: "顔アップ",
-      gaze: pickGaze(false, false),
-      makeup: getAutoMakeup("朝", p1.label),
+      time: "朝", place: p1.label, cam: pick([DB.cameraMoves[0], DB.cameraMoves[1], DB.cameraMoves[2], DB.cameraMoves[3]]),
+      style: DB.styles[0], angle: "顔アップ",
+      gaze: pickGaze(false, false), makeup: getAutoMakeup("朝", p1.label),
       prop: currentSeason === "aw" && Math.random() < 0.35 ? DB.props.outdoorWinter[1] : DB.props.none,
-      bg: "極力背景は映さない",
+      bg: DB.bgs[0],
       cloth: customCommute || buildCommute(false, sharedInner, false),
       hair: pick(DB.hairs.work), pose: pick(DB.poses.normal)
     });
     const room = pick([placeBy("リビング"), placeBy("寝室")]);
     const keepInner = !customCommute && Math.random() < 0.3;
     setSlot(2, {
-      time: "夜", place: room.label, style: DB.styles[0], angle: pick(["顔ドアップ", "バストアップ"]),
-      gaze: pickGaze(false, false),
-      makeup: getAutoMakeup("夜", room.label),
-      prop: pickLifeProp("夜", room),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
+      time: "夜", place: room.label, cam: pick(DB.cameraMoves),
+      style: DB.styles[0], angle: pick(["顔ドアップ", "バストアップ"]),
+      gaze: pickGaze(false, false), makeup: getAutoMakeup("夜", room.label),
+      prop: pickLifeProp("夜", room), bg: DB.bgs[0],
       cloth: keepInner ? `アウターを脱ぎ、${sharedInner}（帰宅直後のリラックス感）` : buildElegantPajama(),
       hair: pick(DB.hairs.relax), pose: pick(DB.poses.night)
     });
@@ -2050,20 +1872,18 @@ function runCurrentMode() {
     const p1 = placeBy("カフェ");
     const p2 = pick([placeBy("食材買出し"), placeBy("通勤路")]);
     setSlot(1, {
-      time: "昼", place: p1.label, style: DB.styles[0], angle: "バストアップ",
-      gaze: pickGaze(false, false),
-      makeup: getAutoMakeup("昼", p1.label),
-      prop: pickLifeProp("昼", p1),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
+      time: "昼", place: p1.label, cam: pick([DB.cameraMoves[0], DB.cameraMoves[1], DB.cameraMoves[2]]),
+      style: DB.styles[0], angle: "バストアップ",
+      gaze: pickGaze(false, false), makeup: getAutoMakeup("昼", p1.label),
+      prop: pickLifeProp("昼", p1), bg: DB.bgs[1],
       cloth: useUniform ? pick(c.uniformBreakIndoor) : buildCommute(true, sharedInner, false),
       hair: pick(DB.hairs.work), pose: "飲み物のカップを口元に近づけた自然体"
     });
     setSlot(2, {
-      time: "夕方", place: p2.label, style: DB.styles[0], angle: "顔アップ",
-      gaze: pickGaze(false, false),
-      makeup: getAutoMakeup("夕方", p2.label),
-      prop: pickLifeProp("夕方", p2),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
+      time: "夕方", place: p2.label, cam: pick([DB.cameraMoves[0], DB.cameraMoves[1], DB.cameraMoves[2]]),
+      style: DB.styles[0], angle: "顔アップ",
+      gaze: pickGaze(false, false), makeup: getAutoMakeup("夕方", p2.label),
+      prop: pickLifeProp("夕方", p2), bg: DB.bgs[1],
       cloth: buildCommute(false, sharedInner, Boolean(p2.grocery)),
       hair: pick([DB.hairs.relax[0], DB.hairs.work[3]]),
       pose: p2.grocery ? pick(DB.poses.grocery) : "ほっと一息ついたリラックス表情"
@@ -2075,11 +1895,10 @@ function runCurrentMode() {
     const p1 = pick([placeBy("リビング"), placeBy("寝室")]);
     const p2 = placeBy("寝室");
     setSlot(1, {
-      time: "夜", place: p1.label, style: DB.styles[0], angle: "ウエストアップ",
-      gaze: pickGaze(false, false),
-      makeup: getAutoMakeup("夜", p1.label),
-      prop: pickLifeProp("夜", p1),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
+      time: "夜", place: p1.label, cam: pick([DB.cameraMoves[1], DB.cameraMoves[2], DB.cameraMoves[6]]),
+      style: DB.styles[0], angle: "ウエストアップ",
+      gaze: pickGaze(false, false), makeup: getAutoMakeup("夜", p1.label),
+      prop: pickLifeProp("夜", p1), bg: DB.bgs[0],
       cloth: samePajama, hair,
       pose: pick([
         "リビングのソファ前で少し前かがみになり、軽く見上げる甘い微笑み",
@@ -2088,13 +1907,12 @@ function runCurrentMode() {
       ])
     });
     setSlot(2, {
-      time: "夜", place: p2.label, style: DB.styles[0],
+      time: "夜", place: p2.label, cam: useCloseUp ? DB.cameraMoves[5] : DB.cameraMoves[3],
+      style: DB.styles[0],
       angle: useCloseUp ? "目元を画角外に切った口元〜デコルテ・谷間の超アップ" : "バストアップ",
       gaze: useCloseUp ? DB.gazes.direct[0] : pickGaze(false, true),
-      makeup: getAutoMakeup("夜", p2.label),
-      prop: DB.props.none,
-      bg: "極力背景は映さない",
-      cloth: samePajama, hair,
+      makeup: getAutoMakeup("夜", p2.label), prop: DB.props.none,
+      bg: useCloseUp ? DB.bgs[2] : DB.bgs[0], cloth: samePajama, hair,
       pose: useCloseUp ? "ベッドにうつ伏せになり、少し唇を尖らせた無防備な表情" : "ベッドにうつ伏せになり頬杖をついた甘い表情"
     });
   } else if (currentMode === "r18_edge") {
@@ -2103,23 +1921,20 @@ function runCurrentMode() {
     const hair = pack.wet ? DB.hairs.r18[0] : pick(DB.hairs.r18);
     const isMirror1 = Boolean(p1.mirror);
     setSlot(1, {
-      time: "夜", place: p1.label, style: isMirror1 ? DB.styles[1] : DB.styles[0],
+      time: "夜", place: p1.label, cam: isMirror1 ? DB.cameraMoves[0] : pick([DB.cameraMoves[1], DB.cameraMoves[2], DB.cameraMoves[3], DB.cameraMoves[6]]),
+      style: isMirror1 ? DB.styles[1] : DB.styles[0],
       angle: isMirror1 ? "ウエストアップ" : pick(["ウエストアップ", "やや上方からの見下ろしアングル（デコルテと上目遣い強調）"]),
-      gaze: pickGaze(isMirror1, true),
-      makeup: DB.makeups[2],
-      prop: DB.props.none,
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: pack.text, hair, pose: pick(DB.poses.r18)
+      gaze: pickGaze(isMirror1, true), makeup: DB.makeups[2], prop: DB.props.none,
+      bg: DB.bgs[0], cloth: pack.text, hair, pose: pick(DB.poses.r18)
     });
     const p2 = p1.short === "脱衣所" ? placeBy("寝室") : placeBy(pick(["寝室", "リビング"]));
     const usePartsCrop = Math.random() < 0.55;
     setSlot(2, {
-      time: "夜", place: p2.label, style: DB.styles[0],
+      time: "夜", place: p2.label, cam: usePartsCrop ? DB.cameraMoves[5] : DB.cameraMoves[3],
+      style: DB.styles[0],
       angle: usePartsCrop ? "目元を画角外に切った口元〜デコルテ・谷間の超アップ" : "やや上方からの見下ろしアングル（デコルテと上目遣い強調）",
       gaze: usePartsCrop ? DB.gazes.direct[0] : DB.gazes.direct[1],
-      makeup: DB.makeups[2],
-      prop: DB.props.none,
-      bg: "極力背景は映さない",
+      makeup: DB.makeups[2], prop: DB.props.none, bg: usePartsCrop ? DB.bgs[2] : DB.bgs[0],
       cloth: pack.text, hair,
       pose: usePartsCrop
         ? "ベッドにうつ伏せになり、胸元のラインが強調される角度で少し唇を半開きにした無防備な表情"
@@ -2130,48 +1945,39 @@ function runCurrentMode() {
     const p1 = placeBy("プール更衣室");
     const p2 = useHomeYoga ? placeBy("リビング") : placeBy("寝室");
     setSlot(1, {
-      time: pick(["昼", "夕方", "夜"]), place: p1.label, style: DB.styles[1], angle: "ウエストアップ",
-      gaze: pickGaze(true, false),
-      makeup: DB.makeups[2],
-      prop: DB.props.none,
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: buildSwimOrGym(), hair: DB.hairs.wet[0], pose: pick(DB.poses.gym)
+      time: pick(["昼", "夕方", "夜"]), place: p1.label, cam: DB.cameraMoves[0],
+      style: DB.styles[1], angle: "ウエストアップ",
+      gaze: pickGaze(true, false), makeup: DB.makeups[2], prop: DB.props.none,
+      bg: DB.bgs[1], cloth: buildSwimOrGym(), hair: DB.hairs.wet[0], pose: pick(DB.poses.gym)
     });
     setSlot(2, {
-      time: "夜", place: p2.label, style: DB.styles[0], angle: "バストアップ",
-      gaze: pickGaze(false, false),
-      makeup: DB.makeups[2],
-      prop: pickLifeProp("夜", p2),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: useHomeYoga ? pick(DB.homeYogaWear) : buildElegantPajama(),
+      time: "夜", place: p2.label, cam: pick([DB.cameraMoves[1], DB.cameraMoves[3], DB.cameraMoves[4]]),
+      style: DB.styles[0], angle: "バストアップ",
+      gaze: pickGaze(false, false), makeup: DB.makeups[2], prop: pickLifeProp("夜", p2),
+      bg: DB.bgs[0], cloth: useHomeYoga ? pick(DB.homeYogaWear) : buildElegantPajama(),
       hair: pick(DB.hairs.relax),
       pose: useHomeYoga ? "リビングの床に座り、少し見上げる角度での柔らかい微笑み" : pick(DB.poses.night)
     });
   } else if (currentMode === "holiday_out") {
-    const start = pick([placeBy("姿見越し"), placeBy("玄関")]);
+    const start = pick([placeBy("玄関"), placeBy("姿見越し")]);
     const outPool = DB.places.filter(p => p.type === "out" && p.short !== "通勤路" && p.short !== "食材買出し");
     const out = pick(outPool);
     const core = buildHolidayCore();
     const hair = pick(DB.hairs.holiday);
     const slot1Indoor = start.short === "姿見越し";
     setSlot(1, {
-      time: "朝", place: start.label, style: start.mirror ? DB.styles[1] : DB.styles[0],
+      time: "朝", place: start.label, cam: start.mirror ? DB.cameraMoves[0] : pick([DB.cameraMoves[0], DB.cameraMoves[1], DB.cameraMoves[2]]),
+      style: start.mirror ? DB.styles[1] : DB.styles[0],
       angle: start.mirror ? "全身（鏡越し）" : "バストアップ",
-      gaze: pickGaze(Boolean(start.mirror), false),
-      makeup: DB.makeups[3],
-      prop: DB.props.none,
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: formatHoliday(core, slot1Indoor, false), hair, pose: pick(DB.poses.holidaySexy)
+      gaze: pickGaze(Boolean(start.mirror), false), makeup: DB.makeups[3], prop: DB.props.none,
+      bg: DB.bgs[0], cloth: formatHoliday(core, slot1Indoor, false), hair, pose: pick(DB.poses.holidaySexy)
     });
     const t2 = out.short === "ディナー" ? "夜" : "昼";
     setSlot(2, {
-      time: t2, place: out.label,
+      time: t2, place: out.label, cam: pick([DB.cameraMoves[0], DB.cameraMoves[1], DB.cameraMoves[2], DB.cameraMoves[3]]),
       style: out.grocery ? DB.styles[0] : pick([DB.styles[0], DB.styles[2]]),
-      angle: "バストアップ",
-      gaze: pickGaze(false, false),
-      makeup: DB.makeups[3],
-      prop: pickLifeProp(t2, out),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
+      angle: "バストアップ", gaze: pickGaze(false, false), makeup: DB.makeups[3],
+      prop: pickLifeProp(t2, out), bg: DB.bgs[1],
       cloth: formatHoliday(core, out.indoor, Boolean(out.grocery)), hair,
       pose: out.grocery ? pick(DB.poses.grocery) : pick(DB.poses.holidaySexy)
     });
@@ -2180,21 +1986,17 @@ function runCurrentMode() {
     const p1 = placeBy("寝室");
     const p2 = useYoga ? placeBy("リビング") : placeBy("脱衣所");
     setSlot(1, {
-      time: "朝", place: p1.label, style: DB.styles[0], angle: "顔アップ",
-      gaze: pickGaze(false, false),
-      makeup: DB.makeups[4],
-      prop: DB.props.none,
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: buildElegantPajama(), hair: DB.allHairs[0],
+      time: "朝", place: p1.label, cam: pick([DB.cameraMoves[1], DB.cameraMoves[3], DB.cameraMoves[5]]),
+      style: DB.styles[0], angle: "顔アップ",
+      gaze: pickGaze(false, false), makeup: DB.makeups[4], prop: DB.props.none,
+      bg: DB.bgs[0], cloth: buildElegantPajama(), hair: DB.allHairs[0],
       pose: "ベッドにうつ伏せになり頬杖をついた甘い表情"
     });
     setSlot(2, {
-      time: "夜", place: p2.label, style: useYoga ? DB.styles[0] : DB.styles[1], angle: "バストアップ",
-      gaze: pickGaze(!useYoga, false),
-      makeup: DB.makeups[2],
-      prop: pickLifeProp("夜", p2),
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: useYoga ? pick(DB.homeYogaWear) : buildElegantPajama(),
+      time: "夜", place: p2.label, cam: useYoga ? pick([DB.cameraMoves[2], DB.cameraMoves[3], DB.cameraMoves[4]]) : DB.cameraMoves[0],
+      style: useYoga ? DB.styles[0] : DB.styles[1], angle: "バストアップ",
+      gaze: pickGaze(!useYoga, false), makeup: DB.makeups[2], prop: pickLifeProp("夜", p2),
+      bg: DB.bgs[0], cloth: useYoga ? pick(DB.homeYogaWear) : buildElegantPajama(),
       hair: pick(DB.hairs.relax),
       pose: useYoga ? "リビングの床に座り、少し見上げる角度での柔らかい微笑み" : "お風呂上がりで少し上気した肌の自然な微笑み"
     });
@@ -2249,25 +2051,16 @@ function rerollClothesOnly() {
 }
 
 function rerollSingle(n) {
-  if (n === 2 && isPartsOnlyOn()) {
-    rerollPartsOnly();
-    showToast("パーツカットを変更しました");
-    return;
-  }
+  if (n === 2 && isPartsOnlyOn()) { rerollPartsOnly(); showToast("パーツカットを変更しました"); return; }
   if (currentMode === "r18_edge") {
     const pack = buildR18Pack();
     const p = placeBy(pick(pack.places));
     setSlot(n, {
-      time: "夜", place: p.label,
+      time: "夜", place: p.label, cam: pick(DB.cameraMoves),
       style: p.mirror ? DB.styles[1] : DB.styles[0],
       angle: p.mirror ? "ウエストアップ" : pick(["ウエストアップ", "やや上方からの見下ろしアングル（デコルテと上目遣い強調）", "目元を画角外に切った口元〜デコルテ・谷間の超アップ"]),
-      gaze: pickGaze(Boolean(p.mirror), true),
-      makeup: DB.makeups[2],
-      prop: DB.props.none,
-      bg: "背後の壁・ディスプレイや部屋の雰囲気が少しわかる程度",
-      cloth: pack.text,
-      hair: pack.wet ? DB.hairs.r18[0] : pick(DB.hairs.r18),
-      pose: pick(DB.poses.r18)
+      gaze: pickGaze(Boolean(p.mirror), true), makeup: DB.makeups[2], prop: DB.props.none,
+      bg: DB.bgs[0], cloth: pack.text, hair: pack.wet ? DB.hairs.r18[0] : pick(DB.hairs.r18), pose: pick(DB.poses.r18)
     });
     syncAll();
     return;
@@ -2276,49 +2069,111 @@ function rerollSingle(n) {
   const p = pick(DB.places);
   const t = pick(DB.times);
   const c = DB.closet[currentSeason];
-  let cloth = "";
-  let pose = pick(DB.poses.normal);
-  let hair = pick(DB.allHairs);
+  let cloth = "", pose = pick(DB.poses.normal), hair = pick(DB.allHairs);
 
-  if (p.type === "gym") {
-    cloth = buildSwimOrGym(); pose = pick(DB.poses.gym); hair = DB.hairs.wet[0];
-  } else if (p.short === "玄関") {
-    cloth = Math.random() < 0.5 ? buildCommute(false) : formatHoliday(buildHolidayCore(), false, false);
-  } else if (p.short === "姿見越し") {
-    cloth = formatHoliday(buildHolidayCore(), true, false); pose = pick(DB.poses.holidaySexy);
-  } else if (p.type === "home") {
-    cloth = pick([buildElegantPajama(), pick(DB.homeYogaWear)]); pose = pick(DB.poses.night); hair = pick(DB.hairs.relax);
-  } else if (p.grocery) {
-    cloth = Math.random() < 0.5 ? buildCommute(false, null, true) : formatHoliday(buildHolidayCore(), false, true); pose = pick(DB.poses.grocery);
-  } else if (p.indoor) {
+  if (p.type === "gym") { cloth = buildSwimOrGym(); pose = pick(DB.poses.gym); hair = DB.hairs.wet[0]; }
+  else if (p.short === "玄関") { cloth = Math.random() < 0.5 ? buildCommute(false) : formatHoliday(buildHolidayCore(), false, false); }
+  else if (p.short === "姿見越し") { cloth = formatHoliday(buildHolidayCore(), true, false); pose = pick(DB.poses.holidaySexy); }
+  else if (p.type === "home") { cloth = pick([buildElegantPajama(), pick(DB.homeYogaWear)]); pose = pick(DB.poses.night); hair = pick(DB.hairs.relax); }
+  else if (p.grocery) { cloth = Math.random() < 0.5 ? buildCommute(false, null, true) : formatHoliday(buildHolidayCore(), false, true); pose = pick(DB.poses.grocery); }
+  else if (p.indoor) {
     cloth = Math.random() < 0.35 && p.short === "カフェ" ? pick(c.uniformBreakIndoor) : formatHoliday(buildHolidayCore(), true, false);
     pose = pick(DB.poses.holidaySexy);
-  } else {
-    cloth = formatHoliday(buildHolidayCore(), false, false); pose = pick(DB.poses.holidaySexy);
-  }
+  } else { cloth = formatHoliday(buildHolidayCore(), false, false); pose = pick(DB.poses.holidaySexy); }
 
   setSlot(n, {
-    time: t, place: p.label,
+    time: t, place: p.label, cam: pick(DB.cameraMoves),
     style: p.mirror ? DB.styles[1] : pick([DB.styles[0], DB.styles[2]]),
     angle: p.short === "姿見越し" ? "全身（鏡越し）" : pick(["顔ドアップ", "顔アップ", "バストアップ", "ウエストアップ"]),
-    gaze: pickGaze(Boolean(p.mirror), false),
-    makeup: getAutoMakeup(t, p.label),
-    prop: pickLifeProp(t, p),
-    bg: pick(DB.bgs),
-    cloth, hair, pose
+    gaze: pickGaze(Boolean(p.mirror), false), makeup: getAutoMakeup(t, p.label),
+    prop: pickLifeProp(t, p), bg: p.hasRef ? DB.bgs[0] : DB.bgs[1], cloth, hair, pose
   });
   syncAll();
 }
 
+/* ===== 添付画像番号の自動マッピング（単体4枚・4分割・なし対応） ===== */
+function buildAttachmentPlan() {
+  const p1 = placeByLabel(document.getElementById("place1").value);
+  const p2 = placeByLabel(document.getElementById("place2").value);
+  const r1 = p1.hasRef ? p1.short : null;
+  const r2 = isPartsOnlyOn() ? currentPartsRoom : (p2.hasRef ? p2.short : null);
+
+  const plan = {
+    guideHtml: "",
+    headerRule: "",
+    slot1Ref: "",
+    slot2Ref: ""
+  };
+
+  if (currentRefMode === "none") {
+    plan.guideHtml = `<strong>📎 添付する画像（文字のみモード）</strong>①主人公の参照画像のみ`;
+    if (r1) plan.slot1Ref = `固定空間アンカー：${HOME_REF_ANCHORS[r1].anchor}`;
+    if (r2) plan.slot2Ref = `固定空間アンカー：${HOME_REF_ANCHORS[r2].anchor}`;
+    return plan;
+  }
+
+  if (!r1 && !r2) {
+    plan.guideHtml = `<strong>📎 今回AIに添付する画像（自宅背景なし）</strong>①主人公の参照画像のみ（外出先・別空間のため自宅背景画像は不要）`;
+    return plan;
+  }
+
+  if (currentRefMode === "grid") {
+    plan.guideHtml = `<strong>📎 今回AIに添付する順番（2枚）</strong>①主人公の参照画像 ➔ ②4分割の自宅背景シート`;
+    plan.headerRule = `【添付画像と自宅背景の厳密固定ルール】
+・添付画像①：主人公の顔・髪・体型
+・添付画像②：4分割の自宅背景シート（左上：脱衣所／右上：玄関／左下：寝室／右下：リビング）
+・指定された区画の間取り・壁紙・ドア・家具・照明・スイッチの左右配置を一切変更・創作・左右反転しないこと。他3区画の要素は絶対に混ぜないこと。
+・背景空間を3D固定したまま、カメラ位置（±20度の角度・上下・寄り引き）だけを変えて撮影すること。`;
+    plan.slot1Ref = r1
+      ? `背景参照固定：添付画像②の【${HOME_REF_ANCHORS[r1].gridPos}】のみを100%忠実に使用（${HOME_REF_ANCHORS[r1].anchor}）。他3区画の要素は絶対に混ぜない`
+      : `背景参照注意：この写真は自宅4部屋以外のため、添付画像②（自宅背景）の要素は一切混ぜないこと`;
+    plan.slot2Ref = r2
+      ? `背景参照固定：添付画像②の【${HOME_REF_ANCHORS[r2].gridPos}】のみを100%忠実に使用（${HOME_REF_ANCHORS[r2].anchor}）。他3区画の要素は絶対に混ぜない`
+      : `背景参照注意：この写真は自宅4部屋以外のため、添付画像②（自宅背景）の要素は一切混ぜないこと`;
+    return plan;
+  }
+
+  // singleモード（単体部屋画像添付・推奨）
+  const files = [{ num: "①", label: "主人公の参照画像" }];
+  const roomToNum = {};
+  const circled = ["②", "③"];
+  [r1, r2].forEach(rm => {
+    if (rm && !roomToNum[rm]) {
+      const num = circled[Object.keys(roomToNum).length];
+      roomToNum[rm] = num;
+      files.push({ num, label: `自宅【${rm}】単体画像` });
+    }
+  });
+
+  const fileListText = files.map(f => `${f.num}${f.label}`).join(" ➔ ");
+  plan.guideHtml = `<strong>📎 今回AIに添付する順番（${files.length}枚・単体固定）</strong>${fileListText}`;
+
+  const mappingLines = files.map(f => `・添付画像${f.num}：${f.label}`).join("\n");
+  plan.headerRule = `【添付画像と自宅背景の厳密固定ルール（間取り・配置100%ロック）】
+${mappingLines}
+・各自宅シーンでは、指定された番号の単体背景画像の間取り・壁紙・ドアの木目やパーツ・家具の形状・スイッチや照明の左右位置を一切変更・新規創作・左右反転しないこと。
+・部屋自体の3D空間は完全に固定し、カメラの角度（左右±20度・上下チルト・寄り引き）と被写体の位置だけを動かして画角変化を作ること。
+・指定以外の背景画像の要素が別のコマに混ざらないよう厳密に分離すること。`;
+
+  plan.slot1Ref = r1
+    ? `背景参照固定：添付画像${roomToNum[r1]}（${r1}単体）の空間をそのまま使用（${HOME_REF_ANCHORS[r1].anchor}）`
+    : `背景参照注意：この写真は自宅4部屋以外のため、添付の自宅背景画像は一切使用しないこと`;
+  plan.slot2Ref = r2
+    ? `背景参照固定：添付画像${roomToNum[r2]}（${r2}単体）の空間をそのまま使用（${HOME_REF_ANCHORS[r2].anchor}）`
+    : `背景参照注意：この写真は自宅4部屋以外のため、添付の自宅背景画像は一切使用しないこと`;
+
+  return plan;
+}
+
 function getLightingRule(time, place) {
   if (place.includes("リビング") && time === "夜") {
-    return "照明：天井シーリングライトは消灯、部屋奥の暖色系（電球色）間接照明1灯のみの薄暗く落ち着いた明るさ（壁に柔らかい暖色の光と自然な陰影）";
+    return "照明：天井シーリングライトは消灯、左奥コーナーの暖色系（電球色）フロアランプ1灯のみの薄暗く落ち着いた明るさ（壁に扇状の暖色光と自然な陰影）";
   }
   if (place.includes("リビング") && (time === "朝" || time === "昼")) {
-    return "照明：窓から差し込む自然な日中光";
+    return "照明：左奥カーテン越しに差し込む自然な日中光（家具配置は参照画像と完全同一）";
   }
   if (place.includes("寝室") && time === "夜") {
-    return "照明：天井照明は消灯、ベッドサイドの暖色系ランプのみの薄暗く落ち着いた明るさ";
+    return "照明：天井照明は消灯、右奥ナイトテーブルの四角い白シェード暖色ランプ1灯のみの薄暗く落ち着いた明るさ";
   }
   return "";
 }
@@ -2331,21 +2186,26 @@ function getOutsideSelfieRule(placeLabel, style) {
   return "";
 }
 
-function getSlotText(n) {
+function getSlotText(n, plan) {
+  const refLine = n === 1 ? plan.slot1Ref : plan.slot2Ref;
   if (n === 2 && isPartsOnlyOn()) {
     const pText = document.getElementById("partsText").value.trim();
-    return `2枚目\n${pText}`;
+    return ["2枚目", ...(refLine ? [refLine] : []), pText].join("\n");
   }
   const time = document.getElementById(`time${n}`).value;
   const place = document.getElementById(`place${n}`).value;
+  const cam = document.getElementById(`cam${n}`).value;
   const style = document.getElementById(`style${n}`).value;
   const lighting = getLightingRule(time, place);
   const outRule = getOutsideSelfieRule(place, style);
   const prop = document.getElementById(`prop${n}`).value;
+
   const lines = [
     `${n}枚目`,
     time,
     place,
+    ...(refLine ? [refLine] : []),
+    `カメラ位置・画角変化：${cam}`,
     ...(lighting ? [lighting] : []),
     ...(outRule ? [outRule] : []),
     document.getElementById(`angle${n}`).value,
@@ -2366,9 +2226,13 @@ function syncAll() {
   document.getElementById("sumBox1").classList.toggle("r18-accent", isR18);
   document.getElementById("sumBox2").classList.toggle("r18-accent", isR18);
 
+  const plan = buildAttachmentPlan();
+  document.getElementById("attachGuideHome").innerHTML = plan.guideHtml;
+  document.getElementById("attachGuideOut").innerHTML = plan.guideHtml;
+
   [1, 2].forEach(n => {
     if (n === 2 && isPartsOnlyOn()) {
-      document.getElementById("tag2").textContent = "💅顔なしパーツ";
+      document.getElementById("tag2").textContent = currentPartsRoom ? `🏠${currentPartsRoom} 💅パーツ` : "💅顔なしパーツ";
       document.getElementById("sum2").textContent = document.getElementById("partsText").value;
       return;
     }
@@ -2383,6 +2247,7 @@ function syncAll() {
     const pr = document.getElementById(`prop${n}`).value;
 
     const tags = [];
+    if (pObj.hasRef && currentRefMode !== "none") tags.push("🏠単体固定");
     if (p === "リビング" && t === "夜") tags.push("🕯️暖色");
     if (pObj.type === "out" && s.includes("自撮り")) tags.push("🧱壁背");
     if (g.includes("視線外し")) tags.push("👀目線外し");
@@ -2392,11 +2257,12 @@ function syncAll() {
   });
 
   const base = document.getElementById("basePrompt").value.trim();
+  const refBlock = plan.headerRule ? `\n\n${plan.headerRule}` : "";
   const extra = isR18 ? `\n\n${R18_GUARDRAIL_LINE}` : "";
-  document.getElementById("promptOutput").textContent = `${base}${extra}\n\n${getSlotText(1)}\n\n${getSlotText(2)}`;
+  document.getElementById("promptOutput").textContent = `${base}${refBlock}${extra}\n\n${getSlotText(1, plan)}\n\n${getSlotText(2, plan)}`;
 }
 
-function saveBase() { localStorage.setItem("ds_base_prompt_v7", document.getElementById("basePrompt").value); }
+function saveBase() { localStorage.setItem("ds_base_prompt_v9", document.getElementById("basePrompt").value); }
 
 function copyAll() {
   const txt = document.getElementById("promptOutput").textContent;
